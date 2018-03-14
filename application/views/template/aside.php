@@ -35,8 +35,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url()."assets/"; ?>index.html"><i class="fa fa-circle-o"></i>Utilisateurs</a></li>
-            <li class="active"><a href="<?php echo base_url()."assets/"; ?>index2.html"><i class="fa fa-circle-o"></i>Amis</a></li>
+            <li><a href="<?php echo base_url()."list_users"; ?>"> <i class="fa fa-circle-o"></i>Utilisateurs</a></li>
+            <li class="active"><a href="<?php echo base_url()."listUsers"; ?>"> <i class="fa fa-circle-o"></i>Amis</a></li>
           </ul>
         </li>
         <li>
