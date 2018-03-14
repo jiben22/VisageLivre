@@ -14,105 +14,123 @@
           <?php //echo $post ?>
           <?php echo form_open('home/createPost') ?>
               <div class="form-group">
-                <textarea placeholder="Écrivez un commentaire..." class="form-control" rows="5" name="post"></textarea>
+                <textarea placeholder="Écrivez un commentaire." class="form-control" rows="5" name="post"></textarea>
                 <button type="submit" name="submit" class="btn btn-default">Publier</button>
-            </div> 
+            </div>
         </div>
-        
-        <div class="row">
-          <div class="col-lg-offset-2 col-lg-6">
-            <?php 
-              foreach($posts as $post) {
-                ?>
-                <div class="box" id="1">
-                  
-            <div class="box-header with-border row">
-              <div class="col-lg-2">
-                <img src="<?php echo base_url()."assets/"; ?>dist/img/user2-160x160.jpg" class="img-circle" width="50" height="50" alt="User Image">
+
+        <div class="col-lg-offset-2 col-lg-6">
+
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <div class="box-header with-border">
+              <div class="user-block">
+                <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
+                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                <span class="description">Shared publicly - 7:30 PM Today</span>
               </div>
-              <div>
-                <h3 class="box-title col-lg-8">Benjamin LE GALLO</h3>
-                <div class="row">
-                  <p class="col-lg-offset-1 col-lg-4">Publié il y a 1 heure</p>
-                </div>
-              </div>
-              
-              
-              <div class="box-tools pull-right">
+              <!-- /.user-block -->
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
+                  <i class="fa fa-circle-o"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
+              <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="row">
-                <div class="col-md-8">
-                  <textarea class="text-center">
-                    Commentaire...
-                  </textarea>
+              <!-- post text -->
+              <p>Far far away, behind the word mountains, far from the
+                countries Vokalia and Consonantia, there live the blind
+                texts. Separated they live in Bookmarksgrove right at</p>
+
+              <p>the coast of the Semantics, a large language ocean.
+                A small river named Duden flows by their place and supplies
+                it with the necessary regelialia. It is a paradisematic
+                country, in which roasted parts of sentences fly into
+                your mouth.</p>
+
+              <!-- Attachment -->
+              <div class="attachment-block clearfix">
+                <img class="attachment-img" src="<?php echo base_url()."assets/"; ?>/dist/img/photo1.png" alt="Attachment Image">
+
+                <div class="attachment-pushed">
+                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
+
+                  <div class="attachment-text">
+                    Description about the attachment can be placed here.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. <a href="#">more</a>
+                  </div>
+                  <!-- /.attachment-text -->
                 </div>
-                <!-- /.col -->
+                <!-- /.attachment-pushed -->
               </div>
-              <!-- /.row -->
+              <!-- /.attachment-block -->
+
+              <!-- Social sharing buttons -->
+              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+              <span class="pull-right text-muted">45 likes - 2 comments</span>
             </div>
-            <!-- ./box-body -->
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                    <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">TOTAL REVENUE</span>
-                  </div>
-                  <!-- /.description-block -->
+            <!-- /.box-body -->
+            <div class="box-footer box-comments">
+              <div class="box-comment">
+                <!-- User image -->
+                <img class="img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user3-128x128.jpg" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        Maria Gonzales
+                        <span class="text-muted pull-right">8:03 PM Today</span>
+                      </span><!-- /.username -->
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                    <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">TOTAL COST</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">TOTAL PROFIT</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">GOAL COMPLETIONS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
+                <!-- /.comment-text -->
               </div>
-              <!-- /.row -->
+              <!-- /.box-comment -->
+              <div class="box-comment">
+                <!-- User image -->
+                <img class="img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user5-128x128.jpg" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        Nora Havisham
+                        <span class="text-muted pull-right">8:03 PM Today</span>
+                      </span><!-- /.username -->
+                  The point of using Lorem Ipsum is that it has a more-or-less
+                  normal distribution of letters, as opposed to using
+                  'Content here, content here', making it look like readable English.
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
             </div>
             <!-- /.box-footer -->
-          
+            <div class="box-footer">
+              <form action="#" method="post">
+                <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user4-128x128.jpg" alt="Alt Text">
+                <!-- .img-push is used to add margin to elements next to floating images -->
+                <div class="img-push">
+                  <input class="form-control input-sm" placeholder="Press enter to post comment" type="text">
                 </div>
+              </form>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+        <div class="row">
+          <div class="col-lg-offset-2 col-lg-6">
+            <?php
+              foreach($posts as $post) {
+                ?>
+
                 <?php
-              } 
+              }
             ?>
           </div>
         </div>
