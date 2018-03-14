@@ -36,7 +36,7 @@
 
   <?php $this->load->view('template/header'); ?>
   <?php $this->load->view('template/aside'); ?>
-  <?php $this->load->view('template/content'); ?>
+  <?php $this->load->view($content); ?>
   <?php $this->load->view('template/footer'); ?>
 
   <!-- Control Sidebar -->
