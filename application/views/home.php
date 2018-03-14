@@ -7,8 +7,10 @@
       </h1>
     </section>
 
-    <section class="col-lg-offset-2 col-lg-6">
-      <!-- Box Comment -->
+    <!-- Main content -->
+    <section class="content">
+      <!-- Create post -->
+      <section class="col-lg-offset-1 col-lg-6">
       <div class="box box-widget">
         <div class="box-header with-border">
           <div class="user-block">
@@ -44,11 +46,12 @@
           <!-- /.box-footer -->
         </div>
       </div>
-    </section>
+      </section>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="col-lg-offset-2 col-lg-6">
+      <section>
+        <div class="row">
+      <!-- Comments -->
+        <div class="col-lg-offset-1 col-lg-6">
           <!-- Box Comment -->
           <div class="box box-widget">
             <div class="box-header with-border">
@@ -150,19 +153,8 @@
           </div>
           <!-- /.box -->
         </div>
-
-        <div class="row">
-          <div class="col-lg-offset-2 col-lg-6">
-            <?php
-              foreach ($posts as $post) {
-                  ?>
-
-                <?php
-              }
-            ?>
-          </div>
-        </div>
       </div>
+      </section>
     </section>
     <!-- /.content -->
   </div>
