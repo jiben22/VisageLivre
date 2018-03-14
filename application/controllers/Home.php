@@ -10,10 +10,11 @@ class Home extends CI_Controller {
     }
   
   public function createPost() {
+    //$data['post'] = NULL;
     $this->form_validation->set_rules('post', 'required');
     if(!$this->form_validation->run() === FALSE) {
       $post = $this->input->post('post');
-      $data['post'] = $post;
+      //$data['post'] = $post;
     }
     
     //Define view to load for content
