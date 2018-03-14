@@ -6,21 +6,49 @@
         Fil d'actualités
       </h1>
     </section>
+
+    <section class="col-lg-offset-2 col-lg-6">
+      <!-- Box Comment -->
+      <div class="box box-widget">
+        <div class="box-header with-border">
+          <div class="user-block">
+            <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
+            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+          </div>
+          <!-- /.user-block -->
+          <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
+              <i class="fa fa-circle-o"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+          <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- post text -->
+          <div class="row">
+            <div class="col-lg-12">
+              <?php //echo validations_errors();?>
+              <?php //echo $post?>
+              <?php echo form_open('home/createPost') ?>
+                  <div class="form-group">
+                    <textarea placeholder="Écrivez un commentaire." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" name="submit" class="btn btn-default">Publier</button>
+          </div>
+          <!-- /.box-footer -->
+        </div>
+      </div>
+    </section>
+
     <!-- Main content -->
     <section class="content">
-      <div class="row">
         <div class="col-lg-offset-2 col-lg-6">
-          <?php //echo validations_errors(); ?>
-          <?php //echo $post ?>
-          <?php echo form_open('home/createPost') ?>
-              <div class="form-group">
-                <textarea placeholder="Écrivez un commentaire." class="form-control" rows="5" name="post"></textarea>
-                <button type="submit" name="submit" class="btn btn-default">Publier</button>
-            </div>
-        </div>
-
-        <div class="col-lg-offset-2 col-lg-6">
-
           <!-- Box Comment -->
           <div class="box box-widget">
             <div class="box-header with-border">
@@ -126,8 +154,8 @@
         <div class="row">
           <div class="col-lg-offset-2 col-lg-6">
             <?php
-              foreach($posts as $post) {
-                ?>
+              foreach ($posts as $post) {
+                  ?>
 
                 <?php
               }
