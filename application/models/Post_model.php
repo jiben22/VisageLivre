@@ -47,9 +47,21 @@
         
         //Recover all iddoc of post
         $posts = $query->result_array();
-        
-        var_dump($posts);
-        
+      
+        //Handling date for have difference between now
+        foreach($posts as $post)
+        {
+          $create_date = DateTime::createFromFormat('Y-m-d h:i:s', $post['create_date']);
+          $create_date = new DateTime($create_date);
+          //var_dump($create_date);
+          //echo '**';
+          $current_date = DateTime::createFromFormat('Y-m-d h:i:s', date("Y-m-d H:i:s"));
+          //var_dump($current_date);
+
+          $interval = $current_date->diff($create_date);
+          echo $interval->format('%R%a days');
+        }
+      
         return $posts;
     }
 }
