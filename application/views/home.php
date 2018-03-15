@@ -32,11 +32,12 @@
           <!-- post text -->
           <div class="row">
             <div class="col-lg-12">
+              
               <?php //echo validations_errors();?>
-              <?php //echo $post?>
+              
               <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
-                    <textarea placeholder="Écrivez un commentaire." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Écrivez un commentaire..." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
                 </div>
             </div>
           </div>
