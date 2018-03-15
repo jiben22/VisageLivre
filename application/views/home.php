@@ -50,6 +50,11 @@
       </section>
 
       <section>
+        <?php 
+          foreach($posts as $post) {
+            
+        } 
+        ?>
         <div class="row">
       <!-- Comments -->
         <div class="col-lg-offset-2 col-lg-6">

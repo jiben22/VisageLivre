@@ -38,8 +38,19 @@
       
     public function getLastPosts()
     {
-        $query = $this->db->get('_document');
-        return $query->result_array();
+        //Recover all posts
+        $query = $this->db->query('
+        SELECT doc.iddoc, auteur, content, create_date
+        FROM visagelivre._document as doc 
+            LEFT JOIN visagelivre._post as _post ON doc.iddoc=_post.iddoc 
+            LEFT JOIN visagelivre._user as _user ON doc.auteur=_user.nickname;');
+        
+        //Recover all iddoc of post
+        $posts = $query->result_array();
+        
+        var_dump($posts);
+        
+        return $posts;
     }
 }
 ?>
