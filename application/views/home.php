@@ -32,11 +32,12 @@
           <!-- post text -->
           <div class="row">
             <div class="col-lg-12">
+              
               <?php //echo validations_errors();?>
-              <?php //echo $post?>
+              
               <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
-                    <textarea placeholder="Écrivez un commentaire." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Écrivez un commentaire..." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
                 </div>
             </div>
           </div>
@@ -49,6 +50,9 @@
       </section>
 
       <section>
+        <?php 
+          foreach($posts as $post) {
+        ?>
         <div class="row">
       <!-- Comments -->
         <div class="col-lg-offset-2 col-lg-6">
@@ -57,8 +61,8 @@
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                <span class="description">Shared publicly - 7:30 PM Today</span>
+                <span class="username"><a href="#"><?php echo $post['auteur'] ?></a></span>
+                <span class="description">Publié il y a - 7:30 PM Today</span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -73,32 +77,9 @@
             <!-- /.box-header -->
             <div class="box-body">
               <!-- post text -->
-              <p>Far far away, behind the word mountains, far from the
-                countries Vokalia and Consonantia, there live the blind
-                texts. Separated they live in Bookmarksgrove right at</p>
-
-              <p>the coast of the Semantics, a large language ocean.
-                A small river named Duden flows by their place and supplies
-                it with the necessary regelialia. It is a paradisematic
-                country, in which roasted parts of sentences fly into
-                your mouth.</p>
-
-              <!-- Attachment -->
-              <div class="attachment-block clearfix">
-                <img class="attachment-img" src="<?php echo base_url()."assets/"; ?>/dist/img/photo1.png" alt="Attachment Image">
-
-                <div class="attachment-pushed">
-                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
-
-                  <div class="attachment-text">
-                    Description about the attachment can be placed here.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. <a href="#">more</a>
-                  </div>
-                  <!-- /.attachment-text -->
-                </div>
-                <!-- /.attachment-pushed -->
-              </div>
-              <!-- /.attachment-block -->
+              <p>
+                <?php echo $post['content']; ?>
+              </p>
 
               <!-- Social sharing buttons -->
               <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
@@ -154,6 +135,9 @@
           <!-- /.box -->
         </div>
       </div>
+        <?php 
+            } 
+        ?>
       </section>
     </section>
     <!-- /.content -->

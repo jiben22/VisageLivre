@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => '@Ben22LG',
 	'database' => 'pg_legallbi',
 	'dbdriver' => 'postgre',
-	'dbprefix' => 'todosimple.',
+	'dbprefix' => 'visagelivre.',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
