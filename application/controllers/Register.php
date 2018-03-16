@@ -1,30 +1,35 @@
 <?php
-class Register extends CI_Controller {
-    
-    public function index () {      
-      $this->load->view('register');
-    } 
-    public function createUser() {
-    $this->load->helper('form');
-    $this->load->library('form_validation');
-    $this->form_validation->set_rules('post', 'required');
-
-    if($this->form_validation->run() === FALSE) {
-      echo 'PAS OK';
-    }
-    else
+class Register extends CI_Controller
+{
+    public function index()
     {
-      echo 'OK';
-      $post = $this->input->post('post');
-      var_dump("OK");
-      //Call model to save post
-      $this->post_model->addPost($post);
+        $this->load->view('register');
     }
-    //Define view to load for content
-    $data['content'] = 'home';
-    //Give name file of view
-    $this->load->vars($data);
-    $this->load->view('template');
-  }
+
+    public function registerUser()
+    {
+        $this->load->model('register_model');
+
+        $this->form_validation->set_rules('nickname', 'Nickname', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+
+        if (!$this->form_validation->run() === false) {
+            $password = $this->input->post('password');
+            $passconf = $this->input->post('passconf');
+            if ($password !== $passconf) {
+                redirect('register');
+            } else {
+                $nickname = $this->input->post('nickname');
+                $email = $this->input->post('email');
+
+                //Register user
+                $this->register_model->registerUser($nickname, $email, $password);
+            }
+
+            //At the end, redirect of view login to sign in
+            redirect('login');
+        }
+    }
 }
-?>

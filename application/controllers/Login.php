@@ -1,6 +1,7 @@
 <?php
 class Login extends CI_Controller
 {
+
     public function index()
     {
         $this->logUser();
@@ -21,7 +22,7 @@ class Login extends CI_Controller
             if ($isExist === true) {
                 //WARNING ! Forward data of user, With session variables or variable in view
                 //Redirect
-                $this->redirectHome();
+                redirect('home');
             } else {
                 $data['isExist'] = $isExist;
                 $this->load->vars($data);
@@ -32,14 +33,5 @@ class Login extends CI_Controller
         else {
             $this->load->view('login');
         }
-    }
-
-    public function redirectHome()
-    {
-        //Define view to load for content
-        $data['content'] = 'home';
-        //Give name file of view
-        $this->load->vars($data);
-        $this->load->view('template');
     }
 }

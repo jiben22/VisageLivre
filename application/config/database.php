@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'servbdd.iutlan.etu.univ-rennes1.fr',
-	'username' => 'legallbi',
-	'password' => '@Ben22LG',
-	'database' => 'pg_legallbi',
+	'hostname' => 'localhost',
+	'username' => 'postgres',
+	'password' => 'root',
+	'database' => 'IUT',
 	'dbdriver' => 'postgre',
 	'dbprefix' => 'visagelivre.',
 	'pconnect' => FALSE,
