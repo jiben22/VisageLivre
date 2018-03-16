@@ -40,6 +40,10 @@
   <div class="login-box-body">
     <p class="login-box-msg">Connectez-vous pour démarrer votre session</p>
 
+    <div>
+      <p id="error_message" style="color: #ff0033;"></p>
+    </div>
+
     <?php echo form_open('login/logUser') ?>
       <div class="form-group has-feedback">
         <input class="form-control" name="email" placeholder="Email" type="email">
@@ -49,6 +53,16 @@
         <input class="form-control" name="password" placeholder="Mot de passe" type="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      <?php
+        if (isset($isExist) && $isExist == false) {
+            ?>
+            <script>
+              var p_error_message = document.getElementById('error_message');
+              p_error_message.innerHTML += 'L\'email ou le mot de passe est incorrect !';
+            </script>
+            <?php
+        }
+      ?>
 
       <div class="row">
         <div class="col-xs-7">
@@ -71,16 +85,6 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' //optional
-    });
-  });
-</script>
 
 </body>
 </html>
