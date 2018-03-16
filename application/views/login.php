@@ -46,15 +46,14 @@
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" name="password" placeholder="Password" type="password">
+        <input class="form-control" name="password" placeholder="Mot de passe" type="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+
       <div class="row">
         <div class="col-xs-7">
-          <div class="checkbox icheck">
-            <label>
-              <div class="icheckbox_square-blue" style="position: relative;" aria-checked="false" aria-disabled="false"><input style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 100;"></ins></div> Se souvenir de moi</a>
-            </label>
+          <div class="checkbox">
+            <label><input type="checkbox" value="remember">Se souvenir de moi</label>
           </div>
         </div>
         <!-- /.col -->
@@ -65,8 +64,8 @@
       </div>
     </form>
 
-    <a href="#">J'ai oublié mon mot de passe</a><br>
-    <a href="<?php echo base_url()."index.php/register" ?>" class="text-center">Inscription</a>
+    <!--<a href="#">J'ai oublié mon mot de passe</a><br>-->
+    <a href="<?php echo base_url()."index.php/register" ?>" class="text-center">S'inscrire</a>
 
   </div>
   <!-- /.login-box-body -->

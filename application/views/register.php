@@ -54,7 +54,7 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Confirmation de mot de passe" type="password">
+        <input class="form-control" placeholder="Confirmation du mot de passe" type="password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
@@ -83,4 +83,3 @@
 </script>
 </body>
 </html>
-
