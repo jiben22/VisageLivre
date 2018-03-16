@@ -15,7 +15,7 @@
         <div class="box-header with-border">
           <div class="user-block">
             <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
-            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+            <span class="username"><a href="#"><?php echo $_SESSION['nickname'] ?></a></span>
           </div>
           <!-- /.user-block -->
           <div class="box-tools">
