@@ -42,77 +42,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url()."index.php/friend"; ?>"> <i class="fa fa-circle-o"></i>Amis</a></li>
             <li><a href="<?php echo base_url()."index.php/user"; ?>"> <i class="fa fa-circle-o"></i>Utilisateurs</a></li>
-            <li class="active"><a href="<?php echo base_url()."index.php/friend"; ?>"> <i class="fa fa-circle-o"></i>Amis</a></li>
           </ul>
         </li>
-        <li>
-          <a href="<?php echo base_url()."assets/"; ?>pages/mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="<?php echo base_url()."assets/"; ?>#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="<?php echo base_url()."assets/"; ?>pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="<?php echo base_url()."assets/"; ?>#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li class="treeview">
-              <a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level One
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li class="treeview">
-                  <a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o"></i> Level One</a></li>
-          </ul>
-        </li>
-        <li><a href="<?php echo base_url()."assets/"; ?>https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
-        <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

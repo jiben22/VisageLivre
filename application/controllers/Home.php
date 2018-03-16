@@ -11,7 +11,7 @@ class Home extends CI_Controller {
       $data['content'] = 'home';
 
       //Recover list of last post
-      $data['posts'] = $this->listPosts();
+      $data['posts'] = $this->post_model->getLastPosts();
 
       //Give name file of view
       $this->load->vars($data);
@@ -26,28 +26,13 @@ class Home extends CI_Controller {
 
     if(!$this->form_validation->run() === FALSE) {
       $post = $this->input->post('post');
-      var_dump($post);
+
       //Call model to save post
       $this->post_model->addPost($post);
     }
 
-    //Define view to load for content
-    $data['content'] = 'home';
-    //Give name file of view
-    $this->load->vars($data);
-    $this->load->view('template');
-  }
-
-  public function listPosts()
-  {
-      //Define view to load for content
-      $data['content'] = 'home';
-
-      $data['posts'] = $this->post_model->getLastPosts();
-
-      //Give name file of view
-      $this->load->vars($data);
-      $this->load->view('template');
+    //Redirect
+    redirect('home');
   }
 }
 ?>
