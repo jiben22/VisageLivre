@@ -40,6 +40,16 @@
 
   <div class="register-box-body">
     <p class="login-box-msg">Inscription</p>
+
+    <p id="error_message" style="color: #ff0033;">
+      <?php
+        if (isset($error_message))
+        {
+          echo $error_message;
+        }
+      ?>
+    </p>
+
     <?php echo form_open('register/registerUser') ?>
       <div class="form-group has-feedback">
         <input class="form-control" placeholder="Pseudonyme" name="nickname" type="text">

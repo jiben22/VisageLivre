@@ -25,4 +25,19 @@
 
             return $isExist;
         }
+
+        public function getNickname($email)
+        {
+          //Recver nickname of user
+          $query = $this->db->query(
+                  "
+      SELECT nickname
+      FROM visagelivre._user as _user
+      WHERE _user.email='" . $email. "';"
+              );
+
+          $result = $query->result_array();
+
+          return $result[0]['nickname'];
+        }
     }

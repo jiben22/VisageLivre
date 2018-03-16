@@ -20,7 +20,10 @@ class Login extends CI_Controller
             //Call model to verify user
             $isExist = $this->login_model->VerifyUser($email, $password);
             if ($isExist === true) {
-                //WARNING ! Forward data of user, With session variables or variable in view
+                //Start a session with much informations
+                session_start();
+                $_SESSION['nickname'] = $this->login_model->getNickname($email);
+
                 //Redirect
                 redirect('home');
             } else {

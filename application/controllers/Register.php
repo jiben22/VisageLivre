@@ -18,18 +18,36 @@ class Register extends CI_Controller
         if (!$this->form_validation->run() === false) {
             $password = $this->input->post('password');
             $passconf = $this->input->post('passconf');
-            if ($password !== $passconf) {
-                redirect('register');
-            } else {
-                $nickname = $this->input->post('nickname');
-                $email = $this->input->post('email');
+            $nickname = $this->input->post('nickname');
+            $email = $this->input->post('email');
 
+            $isExistNickname = $this->register_model->isExistNickname($nickname);
+            $isExistEmail = $this->register_model->isExistEmail($email);
+
+            if ($password !== $passconf) {
+                $data['error_message'] = "Les mots de passe ne correspondent pas !";
+                $this->load->vars($data);
+                $this->load->view('register');
+            }
+            else if ($isExistNickname == true)
+            {
+              $data['error_message'] = "Le pseudonyme existe déja !";
+              $this->load->vars($data);
+              $this->load->view('register');
+            }
+            else if ($isExistEmail == true) {
+              $data['error_message'] = "L'email existe déja !";
+              $this->load->vars($data);
+              $this->load->view('register');
+            } else {
                 //Register user
                 $this->register_model->registerUser($nickname, $email, $password);
+                //At the end, redirect of view login to sign in
+                //redirect('login');
             }
-
-            //At the end, redirect of view login to sign in
-            redirect('login');
+        }
+        else {
+         $this->load->view('register');
         }
     }
 }

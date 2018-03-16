@@ -19,5 +19,49 @@
 
         return;
     }
+
+    public function isExistNickname($nickname)
+    {
+      $isExistNickname = true;
+
+      //Verify nickname don't exist
+      $query = $this->db->query(
+              "
+  SELECT nickname
+  FROM visagelivre._user as _user
+  WHERE _user.nickname='" . $nickname. "';"
+          );
+
+      $result = $query->result_array();
+
+      if($result == null)
+      {
+          $isExistNickname = false;
+      }
+
+      return $isExistNickname;
+    }
+
+    public function isExistEmail($email)
+    {
+      $isExistEmail = true;
+
+      //Verify nickname don't exist
+      $query = $this->db->query(
+              "
+  SELECT nickname
+  FROM visagelivre._user as _user
+  WHERE _user.email='" . $email. "';"
+          );
+
+      $result = $query->result_array();
+
+      if($result == null)
+      {
+          $isExistEmail = false;
+      }
+
+      return $isExistEmail;
+    }
 }
 ?>
