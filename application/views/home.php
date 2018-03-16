@@ -32,9 +32,9 @@
           <!-- post text -->
           <div class="row">
             <div class="col-lg-12">
-              
+
               <?php //echo validations_errors();?>
-              
+
               <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
                     <textarea placeholder="Écrivez un commentaire..." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
@@ -50,8 +50,8 @@
       </section>
 
       <section>
-        <?php 
-          foreach($posts as $post) {
+        <?php
+          //foreach($posts as $post) {
         ?>
         <div class="row">
       <!-- Comments -->
@@ -61,7 +61,7 @@
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#"><?php echo $post['auteur'] ?></a></span>
+                <span class="username"><a href="#"><?php //echo $post['auteur'] ?></a></span>
                 <span class="description">Publié il y a - 7:30 PM Today</span>
               </div>
               <!-- /.user-block -->
@@ -78,7 +78,7 @@
             <div class="box-body">
               <!-- post text -->
               <p>
-                <?php echo $post['content']; ?>
+                <?php //echo $post['content']; ?>
               </p>
 
               <!-- Social sharing buttons -->
@@ -135,8 +135,8 @@
           <!-- /.box -->
         </div>
       </div>
-        <?php 
-            } 
+        <?php
+            //}
         ?>
       </section>
     </section>
