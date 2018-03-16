@@ -40,9 +40,13 @@
   <div class="login-box-body">
     <p class="login-box-msg">Connectez-vous pour démarrer votre session</p>
 
-    <div>
-      <p id="error_message" style="color: #ff0033;"></p>
-    </div>
+    <p id="error_message" style="color: #ff0033;">
+      <?php
+        if (isset($error_message)) {
+            echo $error_message;
+        }
+      ?>
+    </p>
 
     <?php echo form_open('login/logUser') ?>
       <div class="form-group has-feedback">
@@ -53,17 +57,6 @@
         <input class="form-control" name="password" placeholder="Mot de passe" type="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <?php
-        if (isset($isExist) && $isExist == false) {
-            ?>
-            <script>
-              var p_error_message = document.getElementById('error_message');
-              p_error_message.innerHTML += 'L\'email ou le mot de passe est incorrect !';
-            </script>
-            <?php
-        }
-      ?>
-
       <div class="row">
         <div class="col-xs-7">
           <div class="checkbox">

@@ -27,7 +27,7 @@ class Login extends CI_Controller
                 //Redirect
                 redirect('home');
             } else {
-                $data['isExist'] = $isExist;
+                $data['error_message'] = "L'email ou le mot de passe est incorrect !";
                 $this->load->vars($data);
                 $this->load->view('login');
             }
