@@ -7,6 +7,12 @@ class Home extends CI_Controller {
     }
 
     public function index() {
+      //Verify that a session active
+      if( !isset($_SESSION['nickname']) )
+      {
+          redirect('login');
+      }
+
       //Define view to load for content
       $data['content'] = 'home';
 
@@ -33,6 +39,14 @@ class Home extends CI_Controller {
 
     //Redirect
     redirect('home');
+  }
+
+  public function signOut()
+  {
+      //Destroy session of user
+      session_destroy();
+
+      redirect('login');
   }
 }
 ?>

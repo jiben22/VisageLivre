@@ -51,7 +51,7 @@
 
       <section>
         <?php
-          //foreach($posts as $post) {
+          foreach($posts as $post) {
         ?>
         <div class="row">
       <!-- Comments -->
@@ -61,8 +61,18 @@
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#"><?php //echo $post['auteur'] ?></a></span>
-                <span class="description">Publié il y a - 7:30 PM Today</span>
+                <span class="username"><a href="#"><?php echo $post['auteur'] ?></a></span>
+                <span class="description">Publié
+                <?php
+                  $diff_date = $post['diff_date'];
+                  if($diff_date != "à l'instant")
+                  {
+                    echo "il y a " . $diff_date;
+                  }
+                  else {
+                    echo $diff_date;
+                  }
+                ?></span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -78,7 +88,7 @@
             <div class="box-body">
               <!-- post text -->
               <p>
-                <?php //echo $post['content']; ?>
+                <?php echo $post['content']; ?>
               </p>
 
               <!-- Social sharing buttons -->
@@ -136,7 +146,7 @@
         </div>
       </div>
         <?php
-            //}
+            }
         ?>
       </section>
     </section>

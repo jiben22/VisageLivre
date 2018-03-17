@@ -31,7 +31,7 @@
                   <li><!-- start message -->
                     <a href="<?php echo base_url()."assets/"; ?>#">
                       <div class="pull-left">
-                        <img src="<?php echo base_url()."assets/"; ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -217,7 +217,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="<?php echo base_url()."assets/"; ?>#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url()."assets/"; ?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">
                 <?php
                   if (isset($_SESSION['nickname'])) {
@@ -229,23 +229,19 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url()."assets/"; ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
+                <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
                 <p>
-                  <small>Membre depuis Nov. 2012</small>
+                  <?php echo $_SESSION['nickname'] ?>
                 </p>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="<?php echo base_url()."assets/"; ?>#">Followers</a>
+                  <div class="col-xs-offset-1 col-xs-4 text-center">
+                    <a href="<?php echo base_url()."index.php/friend"; ?>">Amis</a>
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="<?php echo base_url()."assets/"; ?>#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="<?php echo base_url()."assets/"; ?>#">Friends</a>
+                  <div class="col-xs-offset-1 col-xs-4 text-center">
+                    <a href="<?php echo base_url()."index.php/user"; ?>">Utilisateurs</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -253,10 +249,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url()."assets/"; ?>#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo base_url()."index.php/user/profile"; ?>#" class="btn btn-default btn-flat">Profil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()."assets/"; ?>#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url()."index.php/home/signOut"; ?>#" class="btn btn-default btn-flat">Se déconnecter</a>
                 </div>
               </li>
             </ul>

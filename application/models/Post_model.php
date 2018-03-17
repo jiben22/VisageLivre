@@ -11,7 +11,7 @@
         $data = array(
               // 'id ' => ??? , // No use because of the serial type and the sequence
               'content' => $post, // Argument given to the method
-              'auteur' => 'MOI', // Argument given to the method
+              'auteur' => $_SESSION['nickname'], // Argument given to the method
           );
 
         //Retrieve next val of sequence
@@ -45,24 +45,97 @@
             LEFT JOIN visagelivre._post as _post ON doc.iddoc=_post.iddoc
             LEFT JOIN visagelivre._user as _user ON doc.auteur=_user.nickname;');
 
+        $this->db->from('_document');
+        //Limit of query result
+        $this->db->limit(6);
+        //Order by
+        $this->db->order_by("iddoc", "desc");
+        $query = $this->db->get();
+
         //Recover all iddoc of post
         $posts = $query->result_array();
 
+        //Handling date to have diff bewteen create_date and now
         //Handling date for have difference between now
-        foreach($posts as $post)
+        foreach($posts as $key => $post)
         {
-          $create_date = DateTime::createFromFormat('Y-m-d h:i:s', $post['create_date']);
-          $create_date = new DateTime($create_date);
-          //var_dump($create_date);
-          //echo '**';
-          $current_date = DateTime::createFromFormat('Y-m-d h:i:s', date("Y-m-d H:i:s"));
-          //var_dump($current_date);
-
-          //$interval = $current_date->diff($create_date);
-          //echo $interval->format('%R%a days');
+          $posts[$key]['diff_date'] = $this->getDiffDate($post);
         }
 
         return $posts;
     }
+
+    public function getDiffDate($post)
+    {
+        $create_date = $post['create_date'];
+        $current_date = date("Y-m-d H:i:s");
+
+        $diff = abs(strtotime($current_date) - strtotime($create_date));
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+        $minutes = floor($diff/60.2);
+        $hours = floor($minutes / 60);
+
+          if($years != 0)
+          {
+            switch ($years) {
+              case 1:
+                $diff_date = $years . " an";
+                break;
+
+              default:
+                $diff_date = $years . " ans";
+                break;
+            }
+          }
+            else if($months != 0)
+            {
+              $diff_date = $months . " mois";
+            }
+            else if($days != 0)
+            {
+              switch ($days) {
+                case 1:
+                  $diff_date = $days . " jour";
+                  break;
+
+                default:
+                  $diff_date = $days . " jours";
+                  break;
+              }
+            }
+              else if($hours != 0)
+              {
+                switch ($hours) {
+                  case 1:
+                    $diff_date = $hours . " heure";
+                    break;
+
+                  default:
+                    $diff_date = $hours . " heures";
+                    break;
+                }
+              }
+              else if($minutes != 0)
+              {
+                switch ($minutes) {
+                  case 1:
+                    $diff_date = $minutes . " minute";
+                    break;
+
+                  default:
+                    $diff_date = $minutes . " minutes";
+                    break;
+                }
+              }
+              else
+              {
+                  $diff_date = "à l'instant";
+              }
+
+              return $diff_date;
+      }
 }
 ?>
