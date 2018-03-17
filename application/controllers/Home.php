@@ -27,10 +27,7 @@ class Home extends CI_Controller {
     }
 
   public function createPost() {
-    $this->load->helper('form');
-    $this->load->library('form_validation');
-
-    $this->form_validation->set_rules('post', 'input_post', 'required');
+    $this->form_validation->set_rules('post', 'Post', 'required');
 
     if(!$this->form_validation->run() === FALSE) {
       $post = $this->input->post('post');
@@ -40,6 +37,30 @@ class Home extends CI_Controller {
     }
 
     //Redirect
+    redirect('home');
+  }
+
+  public function createComment()
+  {
+    $this->form_validation->set_rules('comment', 'Comment', 'required');
+
+    if(!$this->form_validation->run() === FALSE) {
+      $iddoc = $this->input->post('iddoc');
+      $comment = $this->input->post('comment');
+
+      //Call method of post model to add a comment
+      $this->post_model->addComment($comment);
+    }
+  }
+
+  public function deletePost()
+  {
+    //Recover id of post in route
+    $iddoc = $_GET['iddoc'];
+
+    //Call method to delete post
+    $this->post_model->deletePost($iddoc);
+
     redirect('home');
   }
 

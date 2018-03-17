@@ -18,14 +18,6 @@
             <span class="username"><a href="#"><?php echo $_SESSION['nickname'] ?></a></span>
           </div>
           <!-- /.user-block -->
-          <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
-              <i class="fa fa-circle-o"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-          <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -37,7 +29,7 @@
 
               <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
-                    <textarea placeholder="Écrivez un commentaire..." class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Exprimez-vous" class="form-control" rows="5" name="post" style="resize: none;"></textarea>
                 </div>
             </div>
           </div>
@@ -61,7 +53,7 @@
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#"><?php echo $post['auteur'] ?></a></span>
+                <span class="username"><a href="#"><?php echo $auteur = $post['auteur'] ?></a></span>
                 <span class="description">Publié
                 <?php
                   $diff_date = $post['diff_date'];
@@ -76,11 +68,19 @@
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
-                  <i class="fa fa-circle-o"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <?php
+                if($_SESSION['nickname'] === $auteur)
+                {
+                  ?>
+                  <button type="button" class="btn btn-box-tool btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-caret-down"></i></button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="<?php echo base_url() . "index.php/home/deletePost?iddoc=" . $post['iddoc']; ?>">Supprimer mon post</a></li>
+                    </ul>
+                  <?php
+                }
+                ?>
+
               </div>
               <!-- /.box-tools -->
             </div>
@@ -132,11 +132,12 @@
             </div>
             <!-- /.box-footer -->
             <div class="box-footer">
-              <form action="#" method="post">
-                <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user4-128x128.jpg" alt="Alt Text">
+              <?php echo form_open('login/createComment') ?>
+                <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
-                  <input class="form-control input-sm" placeholder="Press enter to post comment" type="text">
+                  <input type="number" class="hide" name="iddoc" value="<?php echo $post['iddoc']; ?>"/>
+                  <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text">
                 </div>
               </form>
             </div>

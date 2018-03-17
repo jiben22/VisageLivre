@@ -65,6 +65,18 @@
         return $posts;
     }
 
+    public function deletePost($iddoc)
+    {
+      //Delete document and post
+      $this->db->delete('_document', array('iddoc' => $iddoc));
+      $this->db->delete('_post', array('iddoc' => $iddoc));
+
+      //Delete all comments in this post
+      //NOT CORRECT, delete onlyfirst level of comment
+      $this->db->delete('_comment', array('ref' => $iddoc));
+
+    }
+
     public function getDiffDate($post)
     {
         $create_date = $post['create_date'];
