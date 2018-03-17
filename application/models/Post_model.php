@@ -15,11 +15,11 @@
           );
 
         //Retrieve next val of sequence
-        $query = $this->db->query("SELECT last_value FROM visagelivre._document_iddoc_seq");
+        $query = $this->db->query("SELECT MAX(iddoc) FROM visagelivre._document;");
 
         foreach ($query->result() as $result)
         {
-            $lastValue = intval($result->last_value) + 1;
+            $iddoc = $result->max + 1;
         }
 
         //Insert into document
@@ -27,7 +27,7 @@
 
 
         $data = array(
-              'iddoc ' => $lastValue,
+              'iddoc ' => $iddoc,
           );
         //Insert id of document into post
         $this->db->insert('_post', $data);

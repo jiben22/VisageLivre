@@ -8,6 +8,8 @@ class Friend extends CI_Controller {
     {
         redirect('login');
     }
+
+    $this->load->model('friend_model');
   }
 
     public function index () {
@@ -26,6 +28,16 @@ class Friend extends CI_Controller {
       //Give name file of view
       $this->load->vars($data);
       $this->load->view('template');
+    }
+
+    public function request()
+    {
+      //Recover nickname of this user
+      $nickname = $_GET['nickname'];
+
+      $this->friend_model->sendRequest($nickname);
+
+      redirect('home');
     }
 }
 ?>

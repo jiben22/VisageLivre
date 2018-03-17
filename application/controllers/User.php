@@ -10,14 +10,40 @@ class User extends CI_Controller {
     }
 
     $this->load->model('user_model');
+    $this->load->model('friend_model');
   }
 
     public function index () {
       //Define view to load for content
       $data['content'] = 'list-users';
 
-      //Recover list of users
-      $data['users'] = $this->user_model->listUsers();
+      $nickname = $_SESSION['nickname'];
+
+      //Recover list of all users
+      $users = $this->user_model->listUsers();
+      //Recover list of all friend requests
+      $friendRequests = $this->friend_model->getFriendRequests();
+
+      //Remove actual user
+      foreach ($users as $key => $user) {
+        if($user['nickname'] === $nickname)
+        {
+          unset($users[$key]);
+        }
+        else {
+          $users[$key]['isEligibleForRequest'] = true;
+          foreach ($friendRequests as $friendRequest) {
+            if(
+              ($friendRequest['nickname'] === $nickname && $friendRequest['target'] === $user['nickname']) ||
+               ($friendRequest['target'] === $nickname && $friendRequest['nickname'] === $user['nickname']) )
+            {
+              $users[$key]['isEligibleForRequest'] = false;
+            }
+          }
+        }
+      }
+      $data['users'] = $users;
+      var_dump($users);
 
       //Give name file of view
       $this->load->vars($data);
