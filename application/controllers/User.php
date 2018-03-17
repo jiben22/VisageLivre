@@ -48,6 +48,7 @@ class User extends CI_Controller {
                ($friend['friend'] === $nickname && $friend['friend'] === $user['nickname']) )
             {
               $users[$key]['isEligibleForRequest'] = false;
+              $users[$key]['isEligibleForDeleteFriendship'] = true;
             }
           }
 

@@ -29,10 +29,10 @@
                 <ul class="menu">
                   <li>
                     <a href="<?php echo base_url()."index.php/friend/listFriendRequests"; ?>">
-                      <i class="fa fa-users text-aqua"></i>Vous avez
+                      <i class="fa fa-user-plus"></i>Vous avez
                       <?php
                         $number_friendRequests = $_SESSION['number_friendRequests'];
-                        if($number_friendRequests === 0)
+                        if($number_friendRequests <= 1)
                         {
                           echo $number_friendRequests . " demande d'amitié";
                         }

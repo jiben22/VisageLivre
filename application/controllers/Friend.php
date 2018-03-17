@@ -68,5 +68,17 @@ class Friend extends CI_Controller {
 
       redirect('home');
     }
+
+    public function deleteFriendship()
+    {
+      //Nickname of this user
+      $nickname = $_SESSION['nickname'];
+      //Recover nickname of target
+      $friend = $_GET['nickname'];
+
+      $this->friend_model->deleteFriendship($nickname, $friend);
+
+      redirect('home');
+    }
 }
 ?>

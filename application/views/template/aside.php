@@ -42,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url()."index.php/friend"; ?>"> <i class="fa fa-circle-o"></i>Amis</a></li>
-            <li><a href="<?php echo base_url()."index.php/user"; ?>"> <i class="fa fa-circle-o"></i>Utilisateurs</a></li>
+            <li><a href="<?php echo base_url()."index.php/friend"; ?>"> <i class="fa fa-users"></i>Amis</a></li>
+            <li><a href="<?php echo base_url()."index.php/user"; ?>"> <i class="fa fa-users"></i>Utilisateurs</a></li>
           </ul>
         </li>
       </ul>
