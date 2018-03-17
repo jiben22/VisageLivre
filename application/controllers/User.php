@@ -23,6 +23,8 @@ class User extends CI_Controller {
       $users = $this->user_model->listUsers();
       //Recover list of all friend requests
       $friendRequests = $this->friend_model->getFriendRequests();
+      //List of his friends
+      $friends = $this->friend_model->getHisFriends($nickname);
 
       //Remove actual user
       foreach ($users as $key => $user) {
@@ -40,6 +42,15 @@ class User extends CI_Controller {
               $users[$key]['isEligibleForRequest'] = false;
             }
           }
+          foreach ($friends as $friend) {
+            if(
+              ($friend['nickname'] === $nickname && $friend['friend'] === $user['nickname']) ||
+               ($friend['friend'] === $nickname && $friend['friend'] === $user['nickname']) )
+            {
+              $users[$key]['isEligibleForRequest'] = false;
+            }
+          }
+
         }
       }
       $data['users'] = $users;

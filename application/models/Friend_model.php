@@ -9,7 +9,16 @@
         public function getFriendRequests()
         {
           $query = $this->db->get('_friendrequest');
-          return $query -> result_array();
+          return $query->result_array();
+        }
+
+        public function getHisFriends($nickname)
+        {
+          $this->db->where('nickname', $nickname);
+          $this->db->or_where('friend', $nickname);
+          $query = $this->db->get('_friendof');
+
+          return $query->result_array();
         }
 
         public function getHisFriendRequests($nickname)
@@ -43,14 +52,5 @@
 
           //Delete also friendrequest
           $this->db->delete('_friendrequest', array('nickname' => $friend, 'target' => $nickname));
-        }
-
-        public function getFriends($nickname)
-        {
-          $this->db->where('nickname', $nickname);
-          $this->db->or_where('friend', $nickname);
-          $query = $this->db->get('_friendof');
-
-          return $query->result();
         }
     }
