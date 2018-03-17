@@ -11,7 +11,7 @@
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Amis</b> <a class="pull-right">13,287</a>
+                <b>Amis</b> <a class="pull-right"><?php echo $number_friends ?></a>
               </li>
             </ul>
 

@@ -10,6 +10,7 @@ class Home extends CI_Controller {
       }
 
       $this->load->model('post_model');
+      $this->load->model('friend_model');
 
       $_SESSION['diff_date_connexion'] = $this->getDiffDate();
     }
@@ -20,6 +21,10 @@ class Home extends CI_Controller {
 
       //Recover list of last post
       $data['posts'] = $this->post_model->getLastPosts();
+
+      //Recover list of friend request
+      $friendRequests = $this->friend_model->getHisFriendRequests($_SESSION['nickname']);
+      $_SESSION['number_friendRequests'] = count($friendRequests);
 
       //Give name file of view
       $this->load->vars($data);

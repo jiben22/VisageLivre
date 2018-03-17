@@ -43,7 +43,6 @@ class User extends CI_Controller {
         }
       }
       $data['users'] = $users;
-      var_dump($users);
 
       //Give name file of view
       $this->load->vars($data);
@@ -54,6 +53,10 @@ class User extends CI_Controller {
     {
       //Define view to load for content
       $data['content'] = 'user-profile';
+
+      $nickname = $_SESSION['nickname'];
+      //Number of friend
+      $data['number_friends'] = count($this->friend_model->getFriends($nickname));
 
       //Give name file of view
       $this->load->vars($data);

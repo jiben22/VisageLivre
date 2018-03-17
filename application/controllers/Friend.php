@@ -22,6 +22,9 @@ class Friend extends CI_Controller {
       $nickname = $_GET['nickname'];
       $data['nickname'] = $nickname;
 
+      //Number of friend
+      $data['number_friends'] = count($this->friend_model->getFriends($nickname));
+
       //Define view to load for content
       $data['content'] = 'friend-profile';
 
@@ -36,6 +39,32 @@ class Friend extends CI_Controller {
       $nickname = $_GET['nickname'];
 
       $this->friend_model->sendRequest($nickname);
+
+      redirect('home');
+    }
+
+    public function listFriendRequests()
+    {
+      $data['content'] = 'list-friend_requests';
+
+      //Recover list of friend request
+      $friendRequests = $this->friend_model->getHisFriendRequests($_SESSION['nickname']);
+      $data['friendRequests'] = $friendRequests;
+      $data['number_friendRequests'] = count($friendRequests);
+
+      //Give name file of view
+      $this->load->vars($data);
+      $this->load->view('template');
+    }
+
+    public function acceptRequest()
+    {
+      //Nickname of this user
+      $nickname = $_SESSION['nickname'];
+      //Recover nickname of target
+      $friend = $_GET['nickname'];
+
+      $this->friend_model->acceptRequest($nickname, $friend);
 
       redirect('home');
     }
