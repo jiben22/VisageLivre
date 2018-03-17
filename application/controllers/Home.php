@@ -19,8 +19,30 @@ class Home extends CI_Controller {
       //Define view to load for content
       $data['content'] = 'home';
 
+      $nickname = $_SESSION['nickname'];
+      //Recover all friends of this user
+      $friends = $this->friend_model->getHisFriends($nickname);
+
       //Recover list of last post
-      $data['posts'] = $this->post_model->getLastPosts();
+      $posts = $this->post_model->getLastPosts();
+      //Remove post when auteur isn't friend of this user
+      foreach ($posts as $key => $post) {
+        $auteur = $post['auteur'];
+        if($friends == null)
+        {
+          //No post, define a new array
+          $posts = array();
+        }
+        else {
+          foreach ($friends as $key => $friend) {
+            if( $friend['nickname'] !== $auteur && $friend['friend'] !== $auteur )
+            {
+              unset($posts[$key]);
+            }
+          }
+        }
+      }
+      $data['posts'] = $posts;
 
       //Recover list of friend request
       $friendRequests = $this->friend_model->getHisFriendRequests($_SESSION['nickname']);
