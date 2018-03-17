@@ -20,5 +20,15 @@ class User extends CI_Controller {
       $this->load->vars($data);
       $this->load->view('template');
     }
+
+    public function profile()
+    {
+      //Define view to load for content
+      $data['content'] = 'user-profile';
+
+      //Give name file of view
+      $this->load->vars($data);
+      $this->load->view('template');
+    }
 }
 ?>

@@ -232,6 +232,9 @@
                 <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $_SESSION['nickname'] ?>
+                  <small>
+                    <?php echo "Connecté depuis " . $_SESSION['diff_date_connexion']; ?>
+                  </small>
                 </p>
               </li>
               <!-- Menu Body -->

@@ -3,6 +3,12 @@ class Register extends CI_Controller
 {
     public function index()
     {
+      //If user have a session acitve, redirect to home
+      if( isset($_SESSION['nickname']) )
+      {
+          redirect('home');
+      }
+
         $this->load->view('register');
     }
 

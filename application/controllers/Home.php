@@ -4,6 +4,8 @@ class Home extends CI_Controller {
     public function __construct() {
       parent::__construct();
       $this->load->model('post_model');
+
+      $_SESSION['diff_date_connexion'] = $this->getDiffDate();
     }
 
     public function index() {
@@ -48,5 +50,78 @@ class Home extends CI_Controller {
 
       redirect('login');
   }
+
+  public function getDiffDate()
+  {
+      $create_date = $_SESSION['date_connexion'];
+      $current_date = date("Y-m-d H:i:s");
+
+      $diff = abs(strtotime($current_date) - strtotime($create_date));
+
+      $years = floor($diff / (365*60*60*24));
+      $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+      $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+      $minutes = floor($diff/60.2);
+      $hours = floor($minutes / 60);
+
+        if($years != 0)
+        {
+          switch ($years) {
+            case 1:
+              $diff_date = $years . " an";
+              break;
+
+            default:
+              $diff_date = $years . " ans";
+              break;
+          }
+        }
+          else if($months != 0)
+          {
+            $diff_date = $months . " mois";
+          }
+          else if($days != 0)
+          {
+            switch ($days) {
+              case 1:
+                $diff_date = $days . " jour";
+                break;
+
+              default:
+                $diff_date = $days . " jours";
+                break;
+            }
+          }
+            else if($hours != 0)
+            {
+              switch ($hours) {
+                case 1:
+                  $diff_date = $hours . " heure";
+                  break;
+
+                default:
+                  $diff_date = $hours . " heures";
+                  break;
+              }
+            }
+            else if($minutes != 0)
+            {
+              switch ($minutes) {
+                case 1:
+                  $diff_date = $minutes . " minute";
+                  break;
+
+                default:
+                  $diff_date = $minutes . " minutes";
+                  break;
+              }
+            }
+            else
+            {
+                $diff_date = "quelques instants";
+            }
+
+            return $diff_date;
+    }
 }
 ?>

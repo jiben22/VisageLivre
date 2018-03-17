@@ -1,72 +1,21 @@
-<div class="content">
-
-
+<div class="content-wrapper">
     <div class="row">
       <div class="col-md-3">
 
         <!-- Profile Image -->
         <div class="box box-primary">
           <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" alt="User profile picture">
 
-            <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-            <p class="text-muted text-center">Software Engineer</p>
+            <h3 class="profile-username text-center"><?php echo $_SESSION['nickname'] ?></h3>
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Followers</b> <a class="pull-right">1,322</a>
-              </li>
-              <li class="list-group-item">
-                <b>Following</b> <a class="pull-right">543</a>
-              </li>
-              <li class="list-group-item">
-                <b>Friends</b> <a class="pull-right">13,287</a>
+                <b>Amis</b> <a class="pull-right">13,287</a>
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-
-        <!-- About Me Box -->
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">About Me</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville
-            </p>
-
-            <hr>
-
-            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-            <p class="text-muted">Malibu, California</p>
-
-            <hr>
-
-            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-            <p>
-              <span class="label label-danger">UI Design</span>
-              <span class="label label-success">Coding</span>
-              <span class="label label-info">Javascript</span>
-              <span class="label label-warning">PHP</span>
-              <span class="label label-primary">Node.js</span>
-            </p>
-
-            <hr>
-
-            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            <a href="#" class="btn btn-primary btn-block"><b>Envoyer une demande d'ami</b></a>
           </div>
           <!-- /.box-body -->
         </div>
@@ -354,72 +303,4 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
-
-  <div><div class="row docs-premium-template">
-                  <div class="col-sm-12 col-md-6">
-              <div class="box box-solid">
-                  <div class="box-body">
-                      <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                          PREMIUM TEMPLATE
-                      </h4>
-                      <div class="media">
-                          <div class="media-left">
-                              <a href="https://www.creative-tim.com/product/material-dashboard-pro-angular2?affiliate_id=97705" class="ad-click-event">
-                                  <img src="/uploads/images/free_templates/creative-tim-material-angular.png" alt="Material Dashboard Pro" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-                              </a>
-                          </div>
-                          <div class="media-body">
-                              <div class="clearfix">
-                                  <p class="pull-right">
-                                      <a href="https://www.creative-tim.com/product/material-dashboard-pro-angular2?affiliate_id=97705" class="btn btn-success btn-sm ad-click-event">
-                                          LEARN MORE
-                                      </a>
-                                  </p>
-
-                                  <h4 style="margin-top: 0">Material Dashboard Pro ─ $59</h4>
-
-                                  <p>Angular 2 Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design</p>
-                                  <p style="margin-bottom: 0">
-                                      <i class="fa fa-shopping-cart margin-r5"></i> 853+ purchases
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-                  <div class="col-sm-12 col-md-6">
-              <div class="box box-solid">
-                  <div class="box-body">
-                      <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                          PREMIUM TEMPLATE
-                      </h4>
-                      <div class="media">
-                          <div class="media-left">
-                              <a href="https://www.creative-tim.com/product/now-ui-kit-pro?affiliate_id=97705" class="ad-click-event">
-                                  <img src="/uploads/images/free_templates/now_ui_kit.jpg" alt="Now UI Kit" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-                              </a>
-                          </div>
-                          <div class="media-body">
-                              <div class="clearfix">
-                                  <p class="pull-right">
-                                      <a href="https://www.creative-tim.com/product/now-ui-kit-pro?affiliate_id=97705" class="btn btn-success btn-sm ad-click-event">
-                                          LEARN MORE
-                                      </a>
-                                  </p>
-
-                                  <h4 style="margin-top: 0">Now UI Kit ─ $69</h4>
-
-                                  <p>A beautiful Bootstrap 4 UI kit featuring over 1000 components, 34 sections and 11 example pages</p>
-                                  <p style="margin-bottom: 0">
-                                      <i class="fa fa-shopping-cart margin-r5"></i> 297+ purchases
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          </div>
-      </div>
 </div>

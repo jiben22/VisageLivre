@@ -4,6 +4,12 @@ class Login extends CI_Controller
 
     public function index()
     {
+      //If user have a session acitve, redirect to home
+      if( isset($_SESSION['nickname']) )
+      {
+          redirect('home');
+      }
+
         $this->logUser();
     }
 
@@ -23,6 +29,7 @@ class Login extends CI_Controller
                 //Start a session with much informations
                 session_start();
                 $_SESSION['nickname'] = $this->login_model->getNickname($email);
+                $_SESSION['date_connexion'] = date("Y-m-d H:i:s");
 
                 //Redirect
                 redirect('home');
