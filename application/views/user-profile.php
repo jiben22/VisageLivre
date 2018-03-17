@@ -14,6 +14,7 @@
                 <b>Amis</b> <a class="pull-right">13,287</a>
               </li>
             </ul>
+            <a href="<?php echo base_url(). "index.php/user/deleteUser?nickname=" . $_SESSION['nickname']?>" class="btn btn-danger btn-block"><b>Supprimer son compte</b></a>
           </div>
           <!-- /.box-body -->
         </div>

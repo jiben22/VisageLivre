@@ -11,4 +11,10 @@
             $query = $this->db->get('_user');
             return $query -> result_array();
         }
+
+        public function deleteUser($nickname)
+        {
+          //Delete user
+          $this->db->delete('_user', array('nickname' => $nickname));
+        }
     }

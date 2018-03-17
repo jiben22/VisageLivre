@@ -16,7 +16,8 @@ class Register extends CI_Controller
     {
         $this->load->model('register_model');
 
-        $this->form_validation->set_rules('nickname', 'Nickname', 'trim|xss_clean|required|max_length[50]');
+        $this->form_validation->set_rules('nickname', 'Nickname', 'required');
+        //$this->form_validation->set_rules('nickname', 'Nickname', 'trim|xss_clean|required|max_length[50]');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
@@ -49,7 +50,7 @@ class Register extends CI_Controller
                 //Register user
                 $this->register_model->registerUser($nickname, $email, $password);
                 //At the end, redirect of view login to sign in
-                //redirect('login');
+                redirect('login');
             }
         }
         else {

@@ -20,7 +20,6 @@
         foreach ($query->result() as $result)
         {
             $lastValue = intval($result->last_value) + 1;
-            var_dump($lastValue);
         }
 
         //Insert into document

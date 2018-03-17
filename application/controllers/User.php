@@ -33,5 +33,16 @@ class User extends CI_Controller {
       $this->load->vars($data);
       $this->load->view('template');
     }
+
+    public function deleteUser()
+    {
+        //Recover nickname of user in route
+        $nickname = $_GET['nickname'];
+
+        $this->user_model->deleteUser($nickname);
+
+        session_destroy();
+        redirect('login');
+    }
 }
 ?>

@@ -252,10 +252,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url()."index.php/user/profile"; ?>#" class="btn btn-default btn-flat">Profil</a>
+                  <a href="<?php echo base_url()."index.php/user/profile"; ?>" class="btn btn-default btn-flat">Profil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()."index.php/home/signOut"; ?>#" class="btn btn-default btn-flat">Se déconnecter</a>
+                  <a href="<?php echo base_url()."index.php/home/signOut"; ?>" class="btn btn-default btn-flat">Se déconnecter</a>
                 </div>
               </li>
             </ul>
