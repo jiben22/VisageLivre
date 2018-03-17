@@ -3,18 +3,18 @@ class Home extends CI_Controller {
 
     public function __construct() {
       parent::__construct();
-      $this->load->model('post_model');
-
-      $_SESSION['diff_date_connexion'] = $this->getDiffDate();
-    }
-
-    public function index() {
       //Verify that a session active
       if( !isset($_SESSION['nickname']) )
       {
           redirect('login');
       }
 
+      $this->load->model('post_model');
+
+      $_SESSION['diff_date_connexion'] = $this->getDiffDate();
+    }
+
+    public function index() {
       //Define view to load for content
       $data['content'] = 'home';
 

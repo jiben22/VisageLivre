@@ -5,11 +5,11 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm" placeholder="" aria-controls="example1" type="search"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm" placeholder="" aria-controls="example1" type="search"></label></div></div></div><div class="row"><div class="col-sm-9"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                 <thead>
                 <tr role="row">
-                  <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 183.15px;" aria-sort="ascending" aria-label="Pseudonyme: activate to sort column descending">Pseudonyme</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 233.017px;" aria-label="Email: activate to sort column ascending">Email</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Pseudonyme: activate to sort column descending">Pseudonyme</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Email</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,7 +22,7 @@
                     {
                         ?>
                         <tr role="row" class="odd">
-                          <td class="sorting_1"><?php echo $user['nickname']?></td>
+                          <td class="sorting_1"><a href="<?php echo base_url(). "index.php/friend/profile?nickname=" . $user['nickname']?>"><?php echo $user['nickname']?></a></td>
                           <td><?php echo $user['email']?></td>
                         <?php
                     }
@@ -33,6 +33,11 @@
                         <td><?php echo $user['email']?></td>
                       <?php
                     }
+                    ?>
+                    <td class="col-lg-2">
+                      <a href="<?php echo base_url(). "index.php/friend/request"?>" class="btn btn-primary btn-block"><b>Envoyer une demande d'ami</b></a>
+                    </td>
+                    <?php
                   }
                    ?>
 

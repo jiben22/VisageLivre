@@ -1,5 +1,5 @@
 <?php
-class User extends CI_Controller {
+class Friend extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
@@ -8,26 +8,20 @@ class User extends CI_Controller {
     {
         redirect('login');
     }
-
-    $this->load->model('user_model');
   }
 
     public function index () {
-      //Define view to load for content
-      $data['content'] = 'list-users';
-
-      //Recover list of users
-      $data['users'] = $this->user_model->listUsers();
-
-      //Give name file of view
-      $this->load->vars($data);
-      $this->load->view('template');
+      $this->profile();
     }
 
     public function profile()
     {
+      //Recover nickname of this user
+      $nickname = $_GET['nickname'];
+      $data['nickname'] = $nickname;
+
       //Define view to load for content
-      $data['content'] = 'user-profile';
+      $data['content'] = 'friend-profile';
 
       //Give name file of view
       $this->load->vars($data);
