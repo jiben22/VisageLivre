@@ -11,6 +11,7 @@ class User extends CI_Controller {
 
     $this->load->model('user_model');
     $this->load->model('friend_model');
+    $this->load->model('post_model');
   }
 
     public function index () {
@@ -84,6 +85,26 @@ class User extends CI_Controller {
 
         session_destroy();
         redirect('login');
+    }
+
+    public function wall()
+    {
+      //Define view to load for content
+      $data['content'] = 'wall';
+
+      $nickname = $_GET['nickname'];
+      $data['user'] = $nickname;
+
+      //Recover list of last post
+      $data['posts'] = $this->post_model->getHisPosts($nickname);
+
+      //Recover list of friend request
+      $friendRequests = $this->friend_model->getHisFriendRequests($nickname);
+      $_SESSION['number_friendRequests'] = count($friendRequests);
+
+      //Give name file of view
+      $this->load->vars($data);
+      $this->load->view('template');
     }
 }
 ?>

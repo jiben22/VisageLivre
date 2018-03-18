@@ -148,5 +148,35 @@
 
               return $diff_date;
       }
+
+      public function getHisPosts($nickname)
+      {
+        //Recover all posts
+        $query = $this->db->query('
+        SELECT doc.iddoc, auteur, content, create_date
+        FROM visagelivre._document as doc
+            LEFT JOIN visagelivre._post as _post ON doc.iddoc=_post.iddoc
+            LEFT JOIN visagelivre._user as _user ON doc.auteur=_user.nickname
+        WHERE doc.auteur=\''. $nickname .'\';');
+
+        $this->db->from('_document');
+        //Limit of query result
+        $this->db->limit(6);
+        //Order by
+        $this->db->order_by("iddoc", "desc");
+        $query = $this->db->get();
+
+        //Recover all iddoc of post
+        $posts = $query->result_array();
+
+        //Handling date to have diff bewteen create_date and now
+        //Handling date for have difference between now
+        foreach($posts as $key => $post)
+        {
+          $posts[$key]['diff_date'] = $this->getDiffDate($post);
+        }
+
+        return $posts;
+    }
 }
 ?>

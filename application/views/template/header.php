@@ -11,8 +11,8 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
-      <a href="<?php echo base_url()."assets/"; ?><?php echo base_url()."assets/"; ?>#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+      <a href="<?php echo base_url()."index.php"; ?>" class="sidebar-toggle" role="button" style="font-weight: 600;">
+        Fil d'actualités
       </a>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
@@ -51,17 +51,13 @@
             <a href="<?php echo base_url()."assets/"; ?>#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">
-                <?php
-                  if (isset($_SESSION['nickname'])) {
-                      echo $_SESSION['nickname'];
-                  }
-                 ?>
+                <?php echo $_SESSION['nickname']; ?>
               </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
+                <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="90" height="90" class="img-circle" alt="User Image"></a>
                 <p>
                   <?php echo $_SESSION['nickname'] ?>
                   <small>

@@ -1,21 +1,18 @@
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Fil d'actualités
-      </h1>
-    </section>
-
     <!-- Main content -->
     <section class="content">
+      <?php
+      if( $user === $_SESSION['nickname'] )
+      {
+        ?>
       <!-- Create post -->
       <section class="col-lg-offset-2 col-lg-6">
       <div class="box box-widget">
         <div class="box-header with-border">
           <div class="user-block">
-            <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="40" height="40" class="img-circle" alt="User Image"></a>
-            <span class="username"><a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><?php echo $_SESSION['nickname'] ?></a></span>
+            <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $user; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="40" height="40" class="img-circle" alt="User Image"></a>
+            <span class="username"><a href="<?php echo base_url()."index.php/user/wall?nickname=" . $user; ?>"><?php echo $user ?></a></span>
           </div>
           <!-- /.user-block -->
         </div>
@@ -24,12 +21,9 @@
           <!-- post text -->
           <div class="row">
             <div class="col-lg-12">
-
-              <?php //echo validations_errors();?>
-
               <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
-                    <textarea placeholder="Exprimez-vous" class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Exprimez-vous" class="form-control" rows="2" name="post" style="resize: none;"></textarea>
                 </div>
             </div>
           </div>
@@ -40,11 +34,14 @@
         </div>
       </div>
       </section>
+      <?php
+    }
+    ?>
 
       <section>
         <?php
           foreach($posts as $post) {
-            $auteur = $post['auteur'];
+            $auteur = $user;
         ?>
         <div class="row">
       <!-- Comments -->

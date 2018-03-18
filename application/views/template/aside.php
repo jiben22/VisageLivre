@@ -5,18 +5,15 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
+          <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="45" height="45" class="img-circle" alt="User Image"></a>
         </div>
         <div class="pull-left info">
-          <p>
-            <?php
-              if(isset($_SESSION['nickname']))
-              {
-                echo $_SESSION['nickname'];
-              }
-             ?>
+          <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>">
+          <p style="font-size: 1.2em; font-weight: bold;">
+            <?php echo $_SESSION['nickname']; ?>
           </p>
-          <a href="<?php echo base_url()."assets/"; ?>#"><i class="fa fa-circle text-success"></i>En ligne</a>
+        </a>
+          <a><i class="fa fa-circle text-success"></i>En ligne</a>
         </div>
       </div>
       <!-- search form
