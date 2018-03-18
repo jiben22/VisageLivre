@@ -80,5 +80,48 @@ class Friend extends CI_Controller {
 
       redirect('home');
     }
+
+    public function deleteRequest()
+    {
+      //Nickname of this user
+      $nickname = $_SESSION['nickname'];
+      //Recover nickname of target
+      $friend = $_GET['nickname'];
+
+      $this->friend_model->deleteRequest($nickname, $friend);
+
+      redirect('home');
+    }
+
+    public function listFriends() {
+      //Define view to load for content
+      $data['content'] = 'list-friends';
+
+      $nickname = $_SESSION['nickname'];
+
+      //Recover list of his friends
+      $friends = $this->friend_model->getHisFriends($nickname);
+
+      $_SESSION['number_friends'] = count($friends);
+
+      $friendsNickname = array();
+      //Keep only nickname of his friends
+      foreach ($friends as $key => $friend) {
+        if($friend['nickname'] !== $nickname)
+        {
+          $friendsNickname[]['nickname'] = $friend['nickname'];
+        }
+        else if($friend['friend'] !== $nickname)
+        {
+          $friendsNickname[]['nickname'] = $friend['friend'];
+        }
+      }
+      $data['friends'] = $friendsNickname;
+      //var_dump($data['friends']);
+
+      //Give name file of view
+      $this->load->vars($data);
+      $this->load->view('template');
+    }
 }
 ?>

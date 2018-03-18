@@ -68,7 +68,7 @@ class User extends CI_Controller {
 
       $nickname = $_SESSION['nickname'];
       //Number of friend
-      $data['number_friends'] = count($this->friend_model->getFriends($nickname));
+      $data['number_friends'] = count($this->friend_model->getHisFriends($nickname));
 
       //Give name file of view
       $this->load->vars($data);

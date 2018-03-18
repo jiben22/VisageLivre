@@ -56,8 +56,13 @@
 
         public function deleteFriendship($nickname, $friend)
         {
-          //Try to delete relationship according order of nickname and friend 
+          //Try to delete relationship according order of nickname and friend
             $this->db->delete('_friendof', array('nickname' => $friend, 'friend' => $nickname));
             $this->db->delete('_friendof', array('nickname' => $nickname, 'friend' => $friend));
+        }
+
+        public function deleteRequest($nickname, $friend)
+        {
+          $this->db->delete('_friendrequest', array('nickname' => $friend, 'target' => $nickname));
         }
     }

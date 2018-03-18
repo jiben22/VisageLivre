@@ -20,28 +20,39 @@ class Home extends CI_Controller {
       $data['content'] = 'home';
 
       $nickname = $_SESSION['nickname'];
-      //Recover all friends of this user
-      $friends = $this->friend_model->getHisFriends($nickname);
 
       //Recover list of last post
       $posts = $this->post_model->getLastPosts();
-      //Remove post when auteur isn't friend of this user
-      foreach ($posts as $key => $post) {
-        $auteur = $post['auteur'];
-        if($friends == null)
-        {
-          //No post, define a new array
-          $posts = array();
+      //Recover all friends of this user
+      $friends = $this->friend_model->getHisFriends($nickname);
+
+      //If user haven't friends, keep just his post
+      if($friends == null)
+      {
+        foreach ($posts as $key => $post) {
+          if( $post['auteur'] !== $nickname )
+          {
+            unset($posts[$key]);
+          }
         }
-        else {
-          foreach ($friends as $key => $friend) {
-            if( $friend['nickname'] !== $auteur && $friend['friend'] !== $auteur )
+      }
+      else {
+        //Remove post when auteur isn't friend of this user
+        foreach ($posts as $key => $post) {
+
+          //Recover auteur of post
+          $auteur = $post['auteur'];
+          foreach ($friends as $friend) {
+            //echo ($friend['nickname'] !== $auteur) && ($friend['friend'] !== $auteur) . '</br>';
+            
+            if( ($friend['nickname'] !== $auteur) && ($friend['friend'] !== $auteur) )
             {
               unset($posts[$key]);
             }
           }
         }
       }
+
       $data['posts'] = $posts;
 
       //Recover list of friend request
