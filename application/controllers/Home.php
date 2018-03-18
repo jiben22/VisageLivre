@@ -26,6 +26,18 @@ class Home extends CI_Controller {
       //Recover all friends of this user
       $friends = $this->friend_model->getHisFriends($nickname);
 
+      //Keep only his friends
+      foreach ($friends as $key => $friend) {
+        if($friend['nickname'] !== $nickname)
+        {
+          $friendsNickname[]['nickname'] = $friend['nickname'];
+        }
+        else if($friend['friend'] !== $nickname)
+        {
+          $friendsNickname[]['nickname'] = $friend['friend'];
+        }
+      }
+
       //If user haven't friends, keep just his post
       if($friends == null)
       {
@@ -39,20 +51,25 @@ class Home extends CI_Controller {
       else {
         //Remove post when auteur isn't friend of this user
         foreach ($posts as $key => $post) {
-
           //Recover auteur of post
           $auteur = $post['auteur'];
-          foreach ($friends as $friend) {
-            //echo ($friend['nickname'] !== $auteur) && ($friend['friend'] !== $auteur) . '</br>';
-            
-            if( ($friend['nickname'] !== $auteur) && ($friend['friend'] !== $auteur) )
+          $isPostToDisplay = false;
+          foreach ($friendsNickname as $friend) {
+            if(!$isPostToDisplay)
             {
-              unset($posts[$key]);
+              if( ($friend['nickname'] === $auteur || $auteur === $nickname) )
+              {
+                $isPostToDisplay = true;
+              }
             }
+          }
+          if(!$isPostToDisplay)
+          {
+            //Remove this post of list
+            unset($posts[$key]);
           }
         }
       }
-
       $data['posts'] = $posts;
 
       //Recover list of friend request
