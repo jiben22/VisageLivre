@@ -1,23 +1,23 @@
 <div class="content-wrapper">
 <div class="box">
-              <div class="box-header">
-              <h3 class="box-title">Liste des demandes d'amitié</h3>
-            </div>
+  <div class="info-box" style="margin: 20px 50px 30px 10px; padding-bottom: 52px;">
+    <span class="info-box-icon bg-aqua"><i class="fa fa-user-plus"></i></span>
 
-            <div class="info-box" style="margin: 20px 50px 30px 10px;">
-              <span class="info-box-icon bg-aqua"><i class="fa fa-user-plus"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Demande d'amitiés</span>
-                <span class="info-box-number"><?php echo $_SESSION['number_friendRequests']; ?></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+    <div class="info-box-content">
+      <span class="info-box-text">Demande d'amitiés</span>
+      <span class="info-box-number"><?php echo $_SESSION['number_friendRequests']; ?></span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
 
             <?php
             if ($_SESSION['number_friendRequests'] > 0) {
                 ?>
+                <div class="box-header">
+                <h3 class="box-title">Liste des demandes d'amitié</h3>
+              </div>
+
               <!-- /.box-header -->
               <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">

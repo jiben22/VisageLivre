@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 <div class="box">
+  <div class="info-box" style="margin: 20px 50px 30px 10px; padding-bottom: 52px;">
+    <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+
+    <div class="info-box-content">
+      <span class="info-box-text">Nombre d'amis</span>
+      <span class="info-box-number"><?php echo $_SESSION['number_friends']; ?></span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
+
               <div class="box-header">
               <h3 class="box-title">Liste des amis</h3>
             </div>
-
-            <div class="info-box" style="margin: 20px 50px 30px 10px;">
-              <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Nombre d'amis</span>
-                <span class="info-box-number"><?php echo $_SESSION['number_friends']; ?></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
 
             <!-- /.box-header -->
             <div class="box-body">
