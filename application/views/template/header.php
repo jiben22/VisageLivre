@@ -57,7 +57,7 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="90" height="90" class="img-circle" alt="User Image"></a>
+                <img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $_SESSION['nickname'] ?>
                   <small>
@@ -69,7 +69,7 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-offset-1 col-xs-4 text-center">
-                    <a href="<?php echo base_url()."index.php/friend"; ?>">Amis</a>
+                    <a href="<?php echo base_url()."index.php/friend/listFriends"; ?>">Amis</a>
                   </div>
                   <div class="col-xs-offset-1 col-xs-4 text-center">
                     <a href="<?php echo base_url()."index.php/user"; ?>">Utilisateurs</a>
