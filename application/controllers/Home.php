@@ -218,7 +218,7 @@ class Home extends CI_Controller {
       $iddoc = $_GET['iddoc'];
       $this->post_model->deleteComment($iddoc);
 
-      //redirect('home');
+      redirect('home');
     }
 }
 ?>

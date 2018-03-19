@@ -197,10 +197,8 @@
 
     public function deleteComment($id)
     {
-
       //Hierarchy of comments
       $comments = $this->getComments($id);
-      var_dump($comments);
       //For each comment
       foreach ($comments as $key => $comment) {
         $iddoc = $comment['iddoc'];
@@ -210,8 +208,8 @@
       }
 
       //Delete origin comment and so document !
-      $this->db->delete('_document', array('iddoc' => $iddoc));
-      $this->db->delete('_comment', array('iddoc' => $iddoc));
+      $this->db->delete('_document', array('iddoc' => $id));
+      $this->db->delete('_comment', array('iddoc' => $id));
     }
 }
 ?>
