@@ -41,7 +41,7 @@
                       else if( isset($user['isEligibleForDeleteFriendship']) && ($user['isEligibleForDeleteFriendship'] === true)  )
                       {
                         ?>
-                        <a href="<?php echo base_url(). "index.php/friend/deleteFriendship?nickname=" . $user['nickname']?>" class="btn btn-primary btn-block" style="width: 240px;"><b>Supprimer la relation d'amitié</b></a>
+                        <a href="<?php echo base_url(). "index.php/friend/deleteFriendship?nickname=" . $user['nickname']?>" class="btn btn-danger btn-block" style="width: 240px;"><b>Supprimer la relation d'amitié</b></a>
                         <?php
                       }
                       else {

@@ -2,23 +2,21 @@
 function showComment($post, $comments, $ids)
 {
   foreach ($ids as $keyID => $iddoc) {
-    //var_dump($comments);
     ?>
     <div style="padding-left: <?php echo ($keyID%10)*2; ?>0px;">
     <?php
     foreach ($comments as $keyCOMM => $comment) {
-      //var_dump($comment);
       if( $comment['idsup'] === $iddoc )
       {
         ?>
               <div class="box-comment">
                 <!-- User image -->
-                <img class="img-circle img-sm" src="<?php echo base_url() . "assets"; ?>/dist/img/user8-128x128.jpg" alt="User Image">
+                <img class="img-circle img-sm" src="<?php echo base_url() . "assets"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
 
                 <div class="comment-text">
                       <span class="username">
-                        <?php echo $post['auteur']; ?>
-                        <span class="text-muted pull-right"><?php echo $post['diff_date']; ?></span>
+                        <?php echo $comment['auteur']; ?>
+                        <span class="text-muted pull-right"><?php echo $comment['diff_date']; ?></span>
                       </span>
                       <?php echo $comment['content'] . '</br>'; ?>
                 </div>
@@ -40,15 +38,12 @@ function showComment($post, $comments, $ids)
               <!-- /.box-comment -->
         <?php
         //Remove this comment into list of comments
-        //echo $keyID . ' - ' . $keyCOMM . '</br>';
         unset($ids[$keyID]);
         unset($ids[$keyCOMM]);
 
-        //var_dump($iddoc);
         unset($comments[$keyCOMM]);
 
         $ids[] = $comment['iddoc'];
-        //var_dump($comments);
         showComment($post, $comments, $ids);
       }
     }
@@ -112,7 +107,16 @@ function showComment($post, $comments, $ids)
           <div class="box box-widget">
             <div class="box-header with-border">
               <div class="user-block">
-                <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="40" height="40" class="img-circle" alt="User Image"></a>
+                <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>"><img src="
+                <?php
+                if($auteur === $_SESSION['nickname'])
+                {
+                  echo base_url()."assets/dist/img/user1-128x128.jpg";
+                }
+                else{
+                  echo base_url()."assets/dist/img/user8-128x128.jpg";
+                }
+                 ?>" width="40" height="40" class="img-circle" alt="User Image"></a>
                 <span class="username"><a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>"><?php echo $auteur; ?></a></span>
                 <span class="description">Publié
                 <?php
@@ -173,7 +177,6 @@ function showComment($post, $comments, $ids)
               {
                 $iddoc = $post['iddoc'];
                 $comments = $post['comments'];
-                //var_dump($comments);
                 $ids = array($iddoc);
                 showComment($post, $comments, $ids);
               }

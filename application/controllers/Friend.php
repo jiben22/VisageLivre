@@ -10,6 +10,7 @@ class Friend extends CI_Controller {
     }
 
     $this->load->model('friend_model');
+    $this->load->model('user_model');
   }
 
     public function index () {
@@ -23,7 +24,46 @@ class Friend extends CI_Controller {
       $data['nickname'] = $nickname;
 
       //Number of friend
-      $data['number_friends'] = count($this->friend_model->getFriends($nickname));
+      $data['number_friends'] = count($this->friend_model->getHisFriends($nickname));
+
+      $nickname = $_SESSION['nickname'];
+
+      //Recover list of all users
+      $users = $this->user_model->listUsers();
+      //Recover list of all friend requests
+      $friendRequests = $this->friend_model->getFriendRequests();
+      //List of his friends
+      $friends = $this->friend_model->getHisFriends($nickname);
+
+      //Remove actual user
+      foreach ($users as $key => $user) {
+        if($user['nickname'] === $nickname)
+        {
+          unset($users[$key]);
+        }
+        else {
+          $users[$key]['isEligibleForRequest'] = true;
+          foreach ($friendRequests as $friendRequest) {
+            if(
+              ($friendRequest['nickname'] === $nickname && $friendRequest['target'] === $user['nickname']) ||
+               ($friendRequest['target'] === $nickname && $friendRequest['nickname'] === $user['nickname']) )
+            {
+              $users[$key]['isEligibleForRequest'] = false;
+            }
+          }
+          foreach ($friends as $friend) {
+            if(
+              ($friend['nickname'] === $nickname && $friend['friend'] === $user['nickname']) ||
+               ($friend['friend'] === $nickname && $friend['friend'] === $user['nickname']) )
+            {
+              $users[$key]['isEligibleForRequest'] = false;
+              $users[$key]['isEligibleForDeleteFriendship'] = true;
+            }
+          }
+
+        }
+      }
+      $data['user'] = $users;
 
       //Define view to load for content
       $data['content'] = 'friend-profile';

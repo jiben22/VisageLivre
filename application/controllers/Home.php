@@ -106,6 +106,8 @@ class Home extends CI_Controller {
 
   public function createComment()
   {
+    $nickname = $_SESSION['nickname'];
+    
     $this->form_validation->set_rules('comment', 'Comment', 'required');
 
     if(!$this->form_validation->run() === FALSE) {
@@ -113,7 +115,7 @@ class Home extends CI_Controller {
       $comment = $this->input->post('comment');
 
       //Call method of post model to add a comment
-      $this->post_model->addComment($comment, $iddoc);
+      $this->post_model->addComment($comment, $iddoc, $nickname);
     }
 
     redirect('home');

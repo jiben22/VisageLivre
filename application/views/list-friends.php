@@ -46,7 +46,7 @@
                       <?php
                       } ?>
                     <td class="col-lg-4">
-                        <a href="<?php echo base_url(). "index.php/friend/deleteFriendship?nickname=" . $nickname; ?>" class="btn btn-primary btn-block" style="width: 240px;"><b>Supprimer la relation d'amitié</b></a>
+                        <a href="<?php echo base_url(). "index.php/friend/deleteFriendship?nickname=" . $nickname; ?>" class="btn btn-danger btn-block" style="width: 240px;"><b>Supprimer la relation d'amitié</b></a>
                     <?php
                   }
                    ?>

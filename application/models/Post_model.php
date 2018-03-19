@@ -178,11 +178,11 @@
         return $posts;
       }
 
-      public function addComment($comment, $id)
+      public function addComment($comment, $id, $nickname)
       {
         $data = array(
               'content' => $comment, // Argument given to the method
-              'auteur' => $_SESSION['nickname'], // Argument given to the method
+              'auteur' => $nickname, // Argument given to the method
           );
 
         //Retrieve next val of sequence
@@ -214,7 +214,16 @@
       SELECT * FROM visagelivre.comments('. $iddoc . ')
       as comm INNER JOIN visagelivre._document as _doc ON (comm.iddoc = _doc.iddoc);');
 
-      return $query->result_array();
+      $comments = $query->result_array();
+
+      //Handling date to have diff bewteen create_date and now
+      //Handling date for have difference between now
+      foreach($comments as $key => $comment)
+      {
+        $comments[$key]['diff_date'] = $this->getDiffDate($comment);
+      }
+
+      return $comments;
     }
 }
 ?>
