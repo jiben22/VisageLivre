@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="45" height="45" class="img-circle" alt="User Image"></a>
+          <a href="<?php echo base_url()."index.php/user/profile"; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="45" height="45" class="img-circle" alt="User Image"></a>
         </div>
         <div class="pull-left info">
           <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>">

@@ -20,7 +20,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('email', 'input_email', 'required');
         $this->form_validation->set_rules('password', 'input_password', 'required');
         if (!$this->form_validation->run() === false) {
-            $email = $this->input->post('email');
+            $email = strtolower($this->input->post('email'));
             $password = $this->input->post('password');
 
             //Call model to verify user

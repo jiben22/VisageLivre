@@ -23,10 +23,10 @@ class Register extends CI_Controller
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 
         if (!$this->form_validation->run() === false) {
+            $nickname = $this->input->post('nickname');
+            $email = strtolower($this->input->post('email'));
             $password = $this->input->post('password');
             $passconf = $this->input->post('passconf');
-            $nickname = $this->input->post('nickname');
-            $email = $this->input->post('email');
 
             $isExistNickname = $this->register_model->isExistNickname($nickname);
             $isExistEmail = $this->register_model->isExistEmail($email);

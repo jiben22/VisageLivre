@@ -52,19 +52,19 @@
 
     <?php echo form_open('register/registerUser') ?>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Pseudonyme" name="nickname" type="text">
+        <input class="form-control" placeholder="Pseudonyme" name="nickname" type="text" required="true">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" name="email" type="email">
+        <input class="form-control" placeholder="Email" name="email" type="email" required="true">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Mot de passe" name="password" type="password">
+        <input class="form-control" placeholder="Mot de passe" name="password" type="password" required="true">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Confirmation du mot de passe" name="passconf" type="password">
+        <input class="form-control" placeholder="Confirmation du mot de passe" name="passconf" type="password" required="true">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">

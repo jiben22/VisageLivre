@@ -14,23 +14,8 @@
               'auteur' => $_SESSION['nickname'], // Argument given to the method
           );
 
-        //Retrieve next val of sequence
-        $query = $this->db->query("SELECT MAX(iddoc) FROM visagelivre._document;");
-
-        foreach ($query->result() as $result)
-        {
-            $iddoc = $result->max + 1;
-        }
-
         //Insert into document
-        $this->db->insert('_document', $data);
-
-
-        $data = array(
-              'iddoc ' => $iddoc,
-          );
-        //Insert id of document into post
-        $this->db->insert('_post', $data);
+        $this->db->insert('post', $data);
 
         return;
     }
@@ -72,7 +57,6 @@
       //Delete all comments in this post
       //NOT CORRECT, delete onlyfirst level of comment
       $this->db->delete('_comment', array('ref' => $iddoc));
-
     }
 
     public function getDiffDate($post)
@@ -178,31 +162,16 @@
         return $posts;
       }
 
-      public function addComment($comment, $id, $nickname)
+      public function addComment($comment, $iddoc, $nickname)
       {
         $data = array(
               'content' => $comment, // Argument given to the method
               'auteur' => $nickname, // Argument given to the method
+              'ref' => $iddoc, // Argument given to the method
           );
 
-        //Retrieve next val of sequence
-        $query = $this->db->query("SELECT MAX(iddoc) FROM visagelivre._document;");
-
-        foreach ($query->result() as $result)
-        {
-            $iddoc = $result->max + 1;
-        }
-
-        //Insert into document
-        $this->db->insert('_document', $data);
-
-
-        $data = array(
-              'iddoc' => $iddoc,
-              'ref' => $id,
-          );
-        //Insert id of document into comment
-        $this->db->insert('_comment', $data);
+        //Insert into comment
+        $this->db->insert('comment', $data);
 
         return;
     }
@@ -224,6 +193,25 @@
       }
 
       return $comments;
+    }
+
+    public function deleteComment($id)
+    {
+
+      //Hierarchy of comments
+      $comments = $this->getComments($id);
+      var_dump($comments);
+      //For each comment
+      foreach ($comments as $key => $comment) {
+        $iddoc = $comment['iddoc'];
+        //Delete comment and so document !
+        $this->db->delete('_document', array('iddoc' => $iddoc));
+        $this->db->delete('_comment', array('iddoc' => $iddoc));
+      }
+
+      //Delete origin comment and so document !
+      $this->db->delete('_document', array('iddoc' => $iddoc));
+      $this->db->delete('_comment', array('iddoc' => $iddoc));
     }
 }
 ?>

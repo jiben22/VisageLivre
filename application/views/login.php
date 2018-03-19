@@ -50,11 +50,11 @@
 
     <?php echo form_open('login/logUser') ?>
       <div class="form-group has-feedback">
-        <input class="form-control" name="email" placeholder="Email" type="email">
+        <input class="form-control" name="email" placeholder="Email" type="email" required="true">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" name="password" placeholder="Mot de passe" type="password">
+        <input class="form-control" name="password" placeholder="Mot de passe" type="password" required="true">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

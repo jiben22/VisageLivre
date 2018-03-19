@@ -6,30 +6,61 @@ function showComment($post, $comments, $ids)
     <div style="padding-left: <?php echo ($keyID%10)*2; ?>0px;">
     <?php
     foreach ($comments as $keyCOMM => $comment) {
+      //Recover author of comment !
+      $auteur = $comment['auteur'];
       if( $comment['idsup'] === $iddoc )
       {
         ?>
               <div class="box-comment">
                 <!-- User image -->
-                <img class="img-circle img-sm" src="<?php echo base_url() . "assets"; ?>/dist/img/user1-128x128.jpg" alt="User Image">
+                <?php
+                if($auteur === $_SESSION['nickname'])
+                {
+                  ?>
+                  <a href="<?php echo base_url()."index.php/user/profile"; ?>"><img src="
+                  <?php echo base_url()."assets/dist/img/user1-128x128.jpg";
+                }
+                else{
+                  ?>
+                  <a href="<?php echo base_url()."index.php/friend/profile?nickname=" . $auteur; ?>"><img src="
+                  <?php
+                  echo base_url()."assets/dist/img/user8-128x128.jpg";
+                }
+                 echo "\""?> width="40" height="40" class="img-circle" alt="User Image"></a>
 
                 <div class="comment-text">
                       <span class="username">
+                        <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>">
                         <?php echo $comment['auteur']; ?>
+                      </a>
                         <span class="text-muted pull-right"><?php echo $comment['diff_date']; ?></span>
                       </span>
                       <?php echo $comment['content'] . '</br>'; ?>
-                </div>
-                <!-- /.comment-text -->
-                <button id="write-comment_<?php echo $comment['iddoc']; ?>" type="button" class="write-comment btn btn-box-tool btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-edit"></i></button>
 
-                <div class="box-footer write" id="write_<?php echo $comment['iddoc']; ?>">
+                      <div class="box-tools pull-right" style="margin-top: -25px; margin-bottom: 15px;">
+                        <button id="write-comment_<?php echo $comment['iddoc']; ?>" type="button" class="write-comment btn btn-box-tool btn-flat dropdown-toggle"><i class="fa fa-edit"></i></button>
+                        <?php
+                        if($_SESSION['nickname'] === $auteur)
+                        {
+                          ?>
+                          <a href="<?php echo base_url() . "index.php/home/deleteComment?iddoc=" . $comment['iddoc']; ?>">
+                            <button type="button" class="btn btn-box-tool btn-flat dropdown-toggle"><i class="fa fa-trash"></i></button>
+                          </a>
+                          <?php
+                        }
+                        ?>
+                      </div>
+                      <!-- /.comment-text -->
+
+                </div>
+
+                <div class="box-footer write" id="write_<?php echo $comment['iddoc']; ?>" style="margin-top: 10px;">
                   <?php echo form_open('home/createComment'); ?>
                     <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
-                      <input type="number" class="hide" name="iddoc" value="<?php echo $comment['iddoc']; ?>"/>
-                      <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text">
+                      <input type="number" class="hide" name="iddoc" required="true" value="<?php echo $comment['iddoc']; ?>"/>
+                      <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true">
                       <button type="submit" name="submit" class="hide btn btn-default"></button>
                     </div>
                   <?php echo form_close(); ?>
@@ -70,7 +101,7 @@ function showComment($post, $comments, $ids)
       <div class="box box-widget">
         <div class="box-header with-border">
           <div class="user-block">
-            <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="40" height="40" class="img-circle" alt="User Image"></a>
+            <a href="<?php echo base_url()."index.php/user/profile"; ?>"><img src="<?php echo base_url()."assets/"; ?>dist/img/user1-128x128.jpg" width="40" height="40" class="img-circle" alt="User Image"></a>
             <span class="username"><a href="<?php echo base_url()."index.php/user/wall?nickname=" . $_SESSION['nickname']; ?>"><?php echo $_SESSION['nickname'] ?></a></span>
           </div>
           <!-- /.user-block -->
@@ -82,12 +113,10 @@ function showComment($post, $comments, $ids)
           <div class="row">
             <div class="col-lg-12">
                   <div class="form-group">
-                    <textarea placeholder="Exprimez-vous" class="form-control" rows="4" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Exprimez-vous" class="form-control" rows="4" name="post" required="true" style="resize: none;"></textarea>
                 </div>
+                <button type="submit" name="submit" class="btn btn-default">Publier</button>
             </div>
-          </div>
-          <div class="box-footer">
-            <button type="submit" name="submit" class="btn btn-default">Publier</button>
           </div>
           <?php echo form_close(); ?>
           <!-- /.box-footer -->
@@ -107,16 +136,20 @@ function showComment($post, $comments, $ids)
           <div class="box box-widget">
             <div class="box-header with-border">
               <div class="user-block">
-                <a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>"><img src="
                 <?php
                 if($auteur === $_SESSION['nickname'])
                 {
-                  echo base_url()."assets/dist/img/user1-128x128.jpg";
+                  ?>
+                  <a href="<?php echo base_url()."index.php/user/profile"; ?>"><img src="
+                  <?php echo base_url()."assets/dist/img/user1-128x128.jpg";
                 }
                 else{
+                  ?>
+                  <a href="<?php echo base_url()."index.php/friend/profile?nickname=" . $auteur; ?>"><img src="
+                  <?php
                   echo base_url()."assets/dist/img/user8-128x128.jpg";
                 }
-                 ?>" width="40" height="40" class="img-circle" alt="User Image"></a>
+                 echo "\""; ?> width="40" height="40" class="img-circle" alt="User Image"></a>
                 <span class="username"><a href="<?php echo base_url()."index.php/user/wall?nickname=" . $auteur; ?>"><?php echo $auteur; ?></a></span>
                 <span class="description">Publié
                 <?php
@@ -171,17 +204,21 @@ function showComment($post, $comments, $ids)
             </div>
             <!-- /.box-body -->
 
-            <div class="box-footer box-comments">
               <?php
-              if( isset($post['comments']) )
+              if( isset($post['comments']) && count($post['comments']) !== 0 )
               {
+                ?>
+                <div class="box-footer box-comments">
+                <?php
                 $iddoc = $post['iddoc'];
                 $comments = $post['comments'];
                 $ids = array($iddoc);
                 showComment($post, $comments, $ids);
+                ?>
+                </div>
+                <?php
               }
-               ?>
-            </div>
+              ?>
 
             <div class="box-footer">
               <?php echo form_open('home/createComment') ?>
@@ -189,8 +226,8 @@ function showComment($post, $comments, $ids)
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                   <input type="number" class="hide" name="iddoc" value="<?php echo $post['iddoc']; ?>"/>
-                  <textarea placeholder="Votre commentaire..." class="form-control input-sm" rows="2" name="comment" style="resize: none;"></textarea>
-                  <button type="submit" name="submit" class="btn btn-default">Publier</button>
+                  <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true">
+                  <button type="submit" name="submit" class="hide btn btn-default"></button>
                 </div>
                 <?php echo form_close(); ?>
             </div>
@@ -215,6 +252,9 @@ function showComment($post, $comments, $ids)
   <script>
     $('.write').hide();
     $('.write-comment').click(function(){
+      //if one open... hide all
+      $('.write').hide();
+
       //Recover id of this post
       var $id_post = "";
       for(i = 14; i < this.id.length; i++)

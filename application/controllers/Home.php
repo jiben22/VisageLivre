@@ -107,7 +107,7 @@ class Home extends CI_Controller {
   public function createComment()
   {
     $nickname = $_SESSION['nickname'];
-    
+
     $this->form_validation->set_rules('comment', 'Comment', 'required');
 
     if(!$this->form_validation->run() === FALSE) {
@@ -211,6 +211,14 @@ class Home extends CI_Controller {
             }
 
             return $diff_date;
+    }
+
+    public function deleteComment()
+    {
+      $iddoc = $_GET['iddoc'];
+      $this->post_model->deleteComment($iddoc);
+
+      //redirect('home');
     }
 }
 ?>
