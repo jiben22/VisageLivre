@@ -35,9 +35,9 @@ function showComment($post, $comments, $ids)
                       </a>
                         <span class="text-muted pull-right"><?php echo $comment['diff_date']; ?></span>
                       </span>
-                      <?php echo $comment['content'] . '</br>'; ?>
+                      <?php echo $comment['content']; ?>
 
-                      <div class="box-tools pull-right" style="margin-top: -25px; margin-bottom: 15px;">
+                      <div class="box-tools pull-right" style="margin-top: -5px; margin-bottom: 15px;">
                         <button id="write-comment_<?php echo $comment['iddoc']; ?>" type="button" class="write-comment btn btn-box-tool btn-flat dropdown-toggle"><i class="fa fa-edit"></i></button>
                         <?php
                         if($_SESSION['nickname'] === $auteur)
@@ -185,7 +185,21 @@ function showComment($post, $comments, $ids)
             <div class="box-body">
               <!-- post text -->
               <p>
-                <?php echo $post['content']; ?>
+                <?php
+                $content = $post['content'];
+                $i = 60;
+                $isAWord = false;
+                while (!$isAWord) {
+                  if(isset($content[$i]) && $content[$i] != ' ')
+                    $i--;
+                  else
+                    $isAWord = true;
+                }
+
+                echo substr($content, 0, $i);
+                ?>
+                  <span class='more_content' id='more_content_<?php echo $post['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?>"</span>
+                  <button id="btn_more_content_<?php echo $post['iddoc']; ?>" type="button" class="btn_more_content btn btn-box-tool btn-flat"><i class="fa fa-plus-square" style="font-size: 1.2em; margin-bottom: 4px;"></i></button>
               </p>
 
               <!-- Social sharing buttons -->
@@ -250,18 +264,24 @@ function showComment($post, $comments, $ids)
   			  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
   			  crossorigin="anonymous"></script>
   <script>
+  function getId(object, cut)
+  {
+    //Recover id of this post
+    var $id_post = "";
+    for(i = cut; i < object.id.length; i++)
+    {
+      $id_post += object.id[i];
+    }
+    return Number($id_post);
+  }
+
+  //Form of comments
     $('.write').hide();
     $('.write-comment').click(function(){
       //if one open... hide all
       $('.write').hide();
 
-      //Recover id of this post
-      var $id_post = "";
-      for(i = 14; i < this.id.length; i++)
-      {
-        $id_post += this.id[i];
-      }
-      $id_post = Number($id_post);
+      $id_post = getId(this, 14);
 
       //According attr visible of the div
       if( $('#write_' + $id_post).is(':visible') )
@@ -270,6 +290,27 @@ function showComment($post, $comments, $ids)
       }
       else {
         $('#write_' + $id_post).show();
+      }
+    });
+
+    //Text of post or comments
+    $('.more_content').hide();
+    $('.btn_more_content').click(function() {
+      //If one open... hide all
+      $('.more_content').hide();
+
+      $iddoc = getId(this, 17);
+      console.log($iddoc);
+
+      //According attr visible of the div
+      if( $('#more_content_' + $iddoc).is(':visible') )
+      {
+          $('#more_content_' + $iddoc).hide();
+          $('#btn_more_content_' + $iddoc).show();
+      }
+      else {
+        $('#more_content_' + $iddoc).show();
+        $('#btn_more_content_' + $iddoc).hide();
       }
     });
   </script>
