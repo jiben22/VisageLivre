@@ -56,3 +56,53 @@ BEGIN
 	SELECT * FROM commentaires;
 END;
 $$ language 'plpgsql';
+
+CREATE OR REPLACE FUNCTION visagelivre.post() 
+RETURNS TRIGGER AS $$
+DECLARE
+	id INTEGER;
+BEGIN	
+	-- Insertion du post, d'abord dans document
+	INSERT INTO visagelivre._document(auteur, content) VALUES(new.auteur, new.content) returning iddoc INTO id;
+	-- Insertion du post dans _post
+	INSERT INTO visagelivre._post(iddoc) VALUES(id);
+	RAISE NOTICE 'Post ajouté';
+
+	RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+SET SCHEMA 'visagelivre';
+CREATE VIEW post AS
+SELECT auteur, content, create_date
+FROM _document NATURAL JOIN _post;
+
+CREATE TRIGGER trigger_post
+INSTEAD OF INSERT OR UPDATE
+ON visagelivre.post
+FOR EACH ROW EXECUTE PROCEDURE visagelivre.post();
+
+CREATE OR REPLACE FUNCTION visagelivre.comment() 
+RETURNS TRIGGER AS $$
+DECLARE
+	id INTEGER;
+BEGIN
+	-- Insertion du comment dans _document, d'abord
+	INSERT INTO visagelivre._document(auteur, content) VALUES(new.auteur, new.content) returning iddoc INTO id;
+	-- Insertion du comment dans _comment
+	INSERT INTO visagelivre._comment(iddoc, ref) VALUES(id, new.ref);
+	RAISE NOTICE 'Commentaire ajouté';
+
+	RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+SET SCHEMA 'visagelivre';
+CREATE VIEW comment AS
+SELECT ref, content, auteur, create_date
+FROM _document NATURAL JOIN _comment;
+
+CREATE TRIGGER trigger_comment
+INSTEAD OF INSERT OR UPDATE
+ON visagelivre.comment
+FOR EACH ROW EXECUTE PROCEDURE visagelivre.comment();
