@@ -35,3 +35,24 @@ create table visagelivre._comment(
 IDDOC integer not null constraint _comment_PK primary key 
     constraint _comment_IS_document_fk references visagelivre._document on delete cascade,
 ref integer not null constraint _comment_document_fk references visagelivre._document on delete cascade);
+
+CREATE OR REPLACE FUNCTION visagelivre.comments(id Integer)
+RETURNS TABLE (
+ 	iddoc INTEGER,
+ 	idsup INTEGER
+)
+AS $$
+BEGIN
+	return QUERY WITH Recursive commentaires AS(
+		SELECT _comment.iddoc, _comment.ref
+		FROM visagelivre._comment
+		WHERE ref=id
+		UNION
+		SELECT _comment.iddoc, _comment.ref
+		FROM visagelivre._comment
+		INNER JOIN commentaires
+		ON _comment.ref = commentaires.iddoc
+	)
+	SELECT * FROM commentaires;
+END;
+$$ language 'plpgsql';

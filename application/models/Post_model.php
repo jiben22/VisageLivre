@@ -38,17 +38,16 @@
     public function getLastPosts()
     {
         //Recover all posts
-        $query = $this->db->query('
-        SELECT doc.iddoc, auteur, content, create_date
-        FROM visagelivre._document as doc
-            LEFT JOIN visagelivre._post as _post ON doc.iddoc=_post.iddoc
-            LEFT JOIN visagelivre._user as _user ON doc.auteur=_user.nickname;');
-
-        $this->db->from('_document');
+        $this->db->select('doc.iddoc, auteur, content, create_date');
+        $this->db->from('_document AS doc');// I use aliasing make joins easier
+        $this->db->join('_post AS _post', 'doc.iddoc = _post.iddoc', 'INNER');
+        $this->db->join('_user AS _user', 'doc.auteur = _user.nickname', 'INNER');
         //Limit of query result
         $this->db->limit(6);
-        //Order by
+        //Order by IDDOC
         $this->db->order_by("iddoc", "desc");
+
+        //Execute query
         $query = $this->db->get();
 
         //Recover all iddoc of post
@@ -177,6 +176,45 @@
         }
 
         return $posts;
+      }
+
+      public function addComment($comment, $id)
+      {
+        $data = array(
+              'content' => $comment, // Argument given to the method
+              'auteur' => $_SESSION['nickname'], // Argument given to the method
+          );
+
+        //Retrieve next val of sequence
+        $query = $this->db->query("SELECT MAX(iddoc) FROM visagelivre._document;");
+
+        foreach ($query->result() as $result)
+        {
+            $iddoc = $result->max + 1;
+        }
+
+        //Insert into document
+        $this->db->insert('_document', $data);
+
+
+        $data = array(
+              'iddoc' => $iddoc,
+              'ref' => $id,
+          );
+        //Insert id of document into comment
+        $this->db->insert('_comment', $data);
+
+        return;
+    }
+
+    public function getComments($iddoc)
+    {
+      //Recover all posts
+      $query = $this->db->query('
+      SELECT * FROM visagelivre.comments('. $iddoc . ')
+      as comm INNER JOIN visagelivre._document as _doc ON (comm.iddoc = _doc.iddoc);');
+
+      return $query->result_array();
     }
 }
 ?>

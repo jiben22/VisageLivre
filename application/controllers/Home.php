@@ -23,6 +23,15 @@ class Home extends CI_Controller {
 
       //Recover list of last post
       $posts = $this->post_model->getLastPosts();
+
+      $comments = array();
+      $numberComments = 0;
+      //Recover all comments of each post
+      foreach ($posts as $key => $post) {
+        $posts[$key]['comments'] = $this->post_model->getComments($post['iddoc']);
+        $posts[$key]['number_comments'] = count($posts[$key]['comments']);
+      }
+
       //Recover all friends of this user
       $friends = $this->friend_model->getHisFriends($nickname);
 
@@ -104,8 +113,10 @@ class Home extends CI_Controller {
       $comment = $this->input->post('comment');
 
       //Call method of post model to add a comment
-      $this->post_model->addComment($comment);
+      $this->post_model->addComment($comment, $iddoc);
     }
+
+    redirect('home');
   }
 
   public function deletePost()

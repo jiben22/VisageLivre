@@ -1,3 +1,64 @@
+<?php
+function showComment($post, $comments, $ids)
+{
+  foreach ($ids as $keyID => $iddoc) {
+    //var_dump($comments);
+    ?>
+    <div style="padding-left: <?php echo ($keyID%10)*2; ?>0px;">
+    <?php
+    foreach ($comments as $keyCOMM => $comment) {
+      //var_dump($comment);
+      if( $comment['idsup'] === $iddoc )
+      {
+        ?>
+              <div class="box-comment">
+                <!-- User image -->
+                <img class="img-circle img-sm" src="<?php echo base_url() . "assets"; ?>/dist/img/user8-128x128.jpg" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        <?php echo $post['auteur']; ?>
+                        <span class="text-muted pull-right"><?php echo $post['diff_date']; ?></span>
+                      </span>
+                      <?php echo $comment['content'] . '</br>'; ?>
+                </div>
+                <!-- /.comment-text -->
+                <button id="write-comment_<?php echo $comment['iddoc']; ?>" type="button" class="write-comment btn btn-box-tool btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-edit"></i></button>
+
+                <div class="box-footer write" id="write_<?php echo $comment['iddoc']; ?>">
+                  <?php echo form_open('home/createComment'); ?>
+                    <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
+                    <!-- .img-push is used to add margin to elements next to floating images -->
+                    <div class="img-push">
+                      <input type="number" class="hide" name="iddoc" value="<?php echo $comment['iddoc']; ?>"/>
+                      <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text">
+                      <button type="submit" name="submit" class="hide btn btn-default"></button>
+                    </div>
+                  <?php echo form_close(); ?>
+                </div>
+              </div>
+              <!-- /.box-comment -->
+        <?php
+        //Remove this comment into list of comments
+        //echo $keyID . ' - ' . $keyCOMM . '</br>';
+        unset($ids[$keyID]);
+        unset($ids[$keyCOMM]);
+
+        //var_dump($iddoc);
+        unset($comments[$keyCOMM]);
+
+        $ids[] = $comment['iddoc'];
+        //var_dump($comments);
+        showComment($post, $comments, $ids);
+      }
+    }
+    ?>
+    </div>
+    <?php
+  }
+}
+ ?>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,20 +83,18 @@
         <!-- /.box-header -->
         <div class="box-body">
           <!-- post text -->
+          <?php echo form_open('home/createPost') ?>
           <div class="row">
             <div class="col-lg-12">
-
-              <?php //echo validations_errors();?>
-
-              <?php echo form_open('home/createPost') ?>
                   <div class="form-group">
-                    <textarea placeholder="Exprimez-vous" class="form-control" rows="5" name="post" style="resize: none;"></textarea>
+                    <textarea placeholder="Exprimez-vous" class="form-control" rows="4" name="post" style="resize: none;"></textarea>
                 </div>
             </div>
           </div>
           <div class="box-footer">
             <button type="submit" name="submit" class="btn btn-default">Publier</button>
           </div>
+          <?php echo form_close(); ?>
           <!-- /.box-footer -->
         </div>
       </div>
@@ -93,54 +152,44 @@
               </p>
 
               <!-- Social sharing buttons -->
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted">45 likes - 2 comments</span>
+              <span class="pull-right text-muted">
+              <?php
+              $number_comments = $post['number_comments'];
+              if($number_comments > 1)
+              {
+                echo $number_comments . ' commentaires';
+              }
+              else {
+                echo $number_comments . ' commentaire';
+              }
+              ?>
+            </span>
             </div>
             <!-- /.box-body -->
+
             <div class="box-footer box-comments">
-              <div class="box-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user3-128x128.jpg" alt="User Image">
-
-                <div class="comment-text">
-                      <span class="username">
-                        Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </div>
-                <!-- /.comment-text -->
-              </div>
-              <!-- /.box-comment -->
-              <div class="box-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user5-128x128.jpg" alt="User Image">
-
-                <div class="comment-text">
-                      <span class="username">
-                        Nora Havisham
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                  The point of using Lorem Ipsum is that it has a more-or-less
-                  normal distribution of letters, as opposed to using
-                  'Content here, content here', making it look like readable English.
-                </div>
-                <!-- /.comment-text -->
-              </div>
-              <!-- /.box-comment -->
+              <?php
+              if( isset($post['comments']) )
+              {
+                $iddoc = $post['iddoc'];
+                $comments = $post['comments'];
+                //var_dump($comments);
+                $ids = array($iddoc);
+                showComment($post, $comments, $ids);
+              }
+               ?>
             </div>
-            <!-- /.box-footer -->
+
             <div class="box-footer">
-              <?php echo form_open('login/createComment') ?>
+              <?php echo form_open('home/createComment') ?>
                 <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                   <input type="number" class="hide" name="iddoc" value="<?php echo $post['iddoc']; ?>"/>
-                  <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text">
+                  <textarea placeholder="Votre commentaire..." class="form-control input-sm" rows="2" name="comment" style="resize: none;"></textarea>
+                  <button type="submit" name="submit" class="btn btn-default">Publier</button>
                 </div>
-              </form>
+                <?php echo form_close(); ?>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -155,3 +204,29 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <script
+  			  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  			  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  			  crossorigin="anonymous"></script>
+  <script>
+    $('.write').hide();
+    $('.write-comment').click(function(){
+      //Recover id of this post
+      var $id_post = "";
+      for(i = 14; i < this.id.length; i++)
+      {
+        $id_post += this.id[i];
+      }
+      $id_post = Number($id_post);
+
+      //According attr visible of the div
+      if( $('#write_' + $id_post).is(':visible') )
+      {
+          $('#write_' + $id_post).hide();
+      }
+      else {
+        $('#write_' + $id_post).show();
+      }
+    });
+  </script>

@@ -10,7 +10,9 @@
     <!-- /.info-box-content -->
   </div>
   <!-- /.info-box -->
-
+  <?php
+  if ($_SESSION['number_friends'] > 0) {
+      ?>
               <div class="box-header">
               <h3 class="box-title">Liste des amis</h3>
             </div>
@@ -50,5 +52,8 @@
                    ?>
               </table>
             </div>
+            <?php
+          }
+          ?>
           </div>
 </div>
