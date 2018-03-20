@@ -35,8 +35,8 @@ function showComment($post, $comments, $ids)
                       </a>
                         <span class="text-muted pull-right"><?php echo $comment['diff_date']; ?></span>
                       </span>
-                      <?php echo $comment['content']; ?>
 
+                      <!-- Buttons edit -->
                       <div class="box-tools pull-right" style="margin-top: -5px; margin-bottom: 15px;">
                         <button id="write-comment_<?php echo $comment['iddoc']; ?>" type="button" class="write-comment btn btn-box-tool btn-flat dropdown-toggle"><i class="fa fa-edit"></i></button>
                         <?php
@@ -52,6 +52,30 @@ function showComment($post, $comments, $ids)
                       </div>
                       <!-- /.comment-text -->
 
+                      <!-- Content of comment -->
+                      <p class="col-lg-10" style="left: -14px;">
+                        <?php
+                        $content = $comment['content'];
+                        $i = 60;
+                        $isAWord = false;
+                        while (!$isAWord) {
+                          if(isset($content[$i]) && $content[$i] != ' ')
+                            $i--;
+                          else
+                            $isAWord = true;
+                        }
+                        echo substr($content, 0, $i);
+
+                        if(strlen($content) > 30)
+                        {
+                          ?>
+                          <span class='more_content' id='more_content_<?php echo $comment['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?>"</span>
+                          <button id="btn_more_content_<?php echo $comment['iddoc']; ?>" type="button" class="btn_more_content btn btn-box-tool btn-flat"><i class="fa fa-plus-square" style="font-size: 1.2em; margin-bottom: 4px;"></i></button>
+                          <?php
+                        }
+                        ?>
+                      </p>
+
                 </div>
 
                 <div class="box-footer write" id="write_<?php echo $comment['iddoc']; ?>" style="margin-top: 10px;">
@@ -60,7 +84,7 @@ function showComment($post, $comments, $ids)
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
                       <input type="number" class="hide" name="iddoc" required="true" value="<?php echo $comment['iddoc']; ?>"/>
-                      <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true">
+                      <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true" maxlength="128">
                       <button type="submit" name="submit" class="hide btn btn-default"></button>
                     </div>
                   <?php echo form_close(); ?>
@@ -113,7 +137,7 @@ function showComment($post, $comments, $ids)
           <div class="row">
             <div class="col-lg-12">
                   <div class="form-group">
-                    <textarea placeholder="Exprimez-vous" class="form-control" rows="4" name="post" required="true" style="resize: none;"></textarea>
+                    <textarea placeholder="Exprimez-vous" class="form-control" rows="4" name="post" required="true" maxlength="128" style="resize: none;"></textarea>
                 </div>
                 <button type="submit" name="submit" class="btn btn-default">Publier</button>
             </div>
@@ -240,7 +264,7 @@ function showComment($post, $comments, $ids)
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                   <input type="number" class="hide" name="iddoc" value="<?php echo $post['iddoc']; ?>"/>
-                  <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true">
+                  <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true" maxlength="128">
                   <button type="submit" name="submit" class="hide btn btn-default"></button>
                 </div>
                 <?php echo form_close(); ?>
