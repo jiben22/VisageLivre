@@ -80,10 +80,10 @@ function showComment($post, $comments, $ids)
 
                 <div class="box-footer write" id="write_<?php echo $comment['iddoc']; ?>" style="margin-top: 10px;">
                   <?php echo form_open('home/createComment'); ?>
-                    <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
+                  <img class="img-responsive img-circle img-sm" src="<?php echo base_url()."assets/"; ?>/dist/img/user1-128x128.jpg" alt="Alt Text">
                     <!-- .img-push is used to add margin to elements next to floating images -->
+                    <input type="number" class="hide" name="iddoc" required="true" value="<?php echo $comment['iddoc']; ?>"/>
                     <div class="img-push">
-                      <input type="number" class="hide" name="iddoc" required="true" value="<?php echo $comment['iddoc']; ?>"/>
                       <input class="form-control input-sm" name="comment" placeholder="Votre commentaire..." type="text" required="true" maxlength="128">
                       <button type="submit" name="submit" class="hide btn btn-default"></button>
                     </div>
@@ -320,9 +320,6 @@ function showComment($post, $comments, $ids)
     //Text of post or comments
     $('.more_content').hide();
     $('.btn_more_content').click(function() {
-      //If one open... hide all
-      $('.more_content').hide();
-
       $iddoc = getId(this, 17);
       console.log($iddoc);
 

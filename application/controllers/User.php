@@ -96,11 +96,17 @@ class User extends CI_Controller {
       $data['user'] = $nickname;
 
       //Recover list of last post
-      $data['posts'] = $this->post_model->getHisPosts($nickname);
+      $posts = $this->post_model->getPostsOf($nickname);
 
-      //Recover list of friend request
-      $friendRequests = $this->friend_model->getHisFriendRequests($nickname);
-      $_SESSION['number_friendRequests'] = count($friendRequests);
+      $comments = array();
+      $numberComments = 0;
+      //Recover all comments of each post
+      foreach ($posts as $key => $post) {
+        $posts[$key]['comments'] = $this->post_model->getComments($post['iddoc']);
+        $posts[$key]['number_comments'] = count($posts[$key]['comments']);
+      }
+
+      $data['posts'] = $posts;
 
       //Give name file of view
       $this->load->vars($data);

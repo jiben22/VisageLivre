@@ -162,6 +162,34 @@
         return $posts;
       }
 
+      public function getPostsOf($nickname)
+      {
+        //Recover all posts OF ...
+        $this->db->select('doc.iddoc, auteur, content, create_date');
+        $this->db->from('_document AS doc');// I use aliasing make joins easier
+        $this->db->join('_post AS _post', 'doc.iddoc = _post.iddoc', 'INNER');
+        $this->db->where('auteur', $nickname);
+        //Limit of query result
+        $this->db->limit(6);
+        //Order by IDDOC
+        $this->db->order_by("iddoc", "desc");
+
+        //Execute query
+        $query = $this->db->get();
+
+        //Recover all iddoc of post
+        $posts = $query->result_array();
+
+        //Handling date to have diff bewteen create_date and now
+        //Handling date for have difference between now
+        foreach($posts as $key => $post)
+        {
+          $posts[$key]['diff_date'] = $this->getDiffDate($post);
+        }
+
+        return $posts;
+      }
+
       public function addComment($comment, $iddoc, $nickname)
       {
         $data = array(
