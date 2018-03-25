@@ -53,7 +53,7 @@ function showComment($post, $comments, $ids)
                       <!-- /.comment-text -->
 
                       <!-- Content of comment -->
-                      <p class="col-lg-10" style="left: -14px;">
+                      <p class="col-sm-10" style="left: -14px;">
                         <?php
                         $content = $comment['content'];
                         $i = 60;
