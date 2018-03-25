@@ -66,10 +66,10 @@ function showComment($post, $comments, $ids)
                         }
                         echo substr($content, 0, $i);
 
-                        if(strlen($content) > 30)
+                        if(strlen($content) > 60)
                         {
                           ?>
-                          <span class='more_content' id='more_content_<?php echo $comment['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?>"</span>
+                          <span class='more_content' id='more_content_<?php echo $comment['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?></span>
                           <button id="btn_more_content_<?php echo $comment['iddoc']; ?>" type="button" class="btn_more_content btn btn-box-tool btn-flat"><i class="fa fa-plus-square" style="font-size: 1.2em; margin-bottom: 4px;"></i></button>
                           <?php
                         }
@@ -228,9 +228,15 @@ function showComment($post, $comments, $ids)
                 }
 
                 echo substr($content, 0, $i);
-                ?>
-                  <span class='more_content' id='more_content_<?php echo $post['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?>"</span>
+
+                if(strlen($content) > 60)
+                {
+                  ?>
+                  <span class='more_content' id='more_content_<?php echo $post['iddoc']; ?>'><?php echo substr($content, $i, strlen($content)); ?></span>
                   <button id="btn_more_content_<?php echo $post['iddoc']; ?>" type="button" class="btn_more_content btn btn-box-tool btn-flat"><i class="fa fa-plus-square" style="font-size: 1.2em; margin-bottom: 4px;"></i></button>
+                  <?php
+                }
+                ?>
               </p>
 
               <!-- Social sharing buttons -->
