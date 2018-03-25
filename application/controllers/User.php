@@ -22,6 +22,8 @@ class User extends CI_Controller {
 
       //Recover list of all users
       $users = $this->user_model->listUsers();
+      $data['number_users'] = count($users);
+
       //Recover list of all friend requests
       $friendRequests = $this->friend_model->getFriendRequests();
       //List of his friends
