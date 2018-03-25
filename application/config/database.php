@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'postgres',
-	'password' => 'root',
-	'database' => 'IUT',
+	'hostname' => '<hostname>',
+	'username' => '<username>',
+	'password' => '<password>',
+	'database' => '<database>',
 	'dbdriver' => 'postgre',
 	'dbprefix' => 'visagelivre.',
 	'pconnect' => FALSE,
