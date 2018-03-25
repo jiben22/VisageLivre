@@ -31,6 +31,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menu de navigation</li>
+        <li><a href="<?php echo base_url(). "index.php/home"; ?>"> <i class="fa fa-bars"></i>Fil d'actualités</a></li>
         <li class="active treeview menu-open">
           <a href="<?php echo base_url()."assets/"; ?>#">
             <i class=" glyphicon glyphicon-th-list"></i> <span>Liste</span>
